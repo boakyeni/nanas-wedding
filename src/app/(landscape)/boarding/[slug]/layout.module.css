@@ -1,0 +1,19 @@
+.orientationPrompt {
+    @apply flex flex-col items-center justify-center h-screen text-center;
+  }
+
+  .orientationContainer {
+    @apply w-[80%] mx-auto;
+  }
+  
+  .promptText {
+    @apply text-lg font-semibold;
+  }
+
+  .promptTextFadeIn {
+    @apply text-lg font-semibold transition-opacity duration-1000 delay-1000;
+  }
+  
+  .hiddenScreen {
+    @apply invisible h-screen;
+  }
