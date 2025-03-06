@@ -65,7 +65,7 @@ const EnvelopeAnimation = () => {
                 motionEnabled={motionEnabled} />
 
             {/* Enable Motion Button */}
-            {/* <EnableMotionButton onEnabled={setMotionEnabled} /> */}
+            <EnableMotionButton onEnabled={setMotionEnabled} />
 
 
             <div
