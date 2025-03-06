@@ -7,6 +7,7 @@ const EnvelopeAnimation = () => {
     const [isCardPulled, setIsCardPulled] = useState(false);
     const [isCardCentered, setIsCardCentered] = useState(false);
     const [flapsFaded, setFlapsFaded] = useState(false);
+    
 
     const handleEnvelopeClick = () => {
         if (!isOpen) {
@@ -140,10 +141,11 @@ const EnvelopeAnimation = () => {
             </div>
 
             <div
-                className="absolute bottom-0 left-0 w-full pointer-events-none transition-opacity duration-300"
+                className="absolute bottom-0 left-0 w-full pointer-events-none"
                 style={{
                     zIndex: 5,
-                    height: '37vh', // adjust height as needed
+                    top: 'calc(50vh + 8rem)', // Envelope bottom: center + half envelope height (16rem/2 = 8rem)
+                    height: 'calc(100vh - (50vh + 8rem))',
                     background: 'linear-gradient(to top, #8e44ad, #f3f4f6)',
                 }}
             ></div>
