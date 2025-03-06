@@ -16,6 +16,7 @@
     "react-dom": "^19.0.0",
     "react-lottie": "^1.2.10",
     "react-pageflip": "^2.0.3",
+    "three": "^0.174.0",
     "turn.js": "^1.0.5"
   },
   "devDependencies": {
