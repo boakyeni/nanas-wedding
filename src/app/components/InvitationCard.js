@@ -18,15 +18,16 @@ const InvitationCard = () => {
         setBarcodeOpacities(opacities);
     }, []);
     return (
-        <div className="relative w-full flex flex-col rounded-3xl">
+        <div className="relative w-full flex flex-col rounded-3xl bg-[url('/n_w2.jpeg')] bg-cover bg-center bg-no-repeat">
+            
             {/* Top Ticket Section */}
-            <div className="flex flex-col items-center bg-gradient-to-r w-full aspect-[8/2] from-white via-amber-50/75 to-white rounded-t-3xl border border-amber-200 border-b-0 pt-2 shadow-sm backdrop-blur-sm">
+            <div className="flex flex-col items-center bg-gradient-to-r w-full aspect-[8/2] from-white via-amber-50/50 to-white rounded-t-3xl border border-amber-200 border-b-0 pt-2 shadow-sm">
                 <p className='mx-auto font-tangerine font-thin text-[#860384] text-6xl pt-4'>Save the Date</p>
                 {/* <p className='mx-auto font-montserrat font-thin text-stone-500 text-lg'> <span className='font-tangerine text-stone-400 text-3xl pr-2'>for</span> ACCRA</p> */}
             </div>
 
             {/* Bottom Ticket Section */}
-            <div className="[border-top-style:dashed] bg-gradient-to-r from-white via-amber-50/75 to-white rounded-b-3xl border border-amber-200 p-4 shadow-lg backdrop-blur-sm">
+            <div className="[border-top-style:dashed] bg-gradient-to-r from-white via-amber-50/50 to-white rounded-b-3xl border border-amber-200 p-4 shadow-lg ">
                 <div className="relative z-10">
                     {/* <div className="text-stone-400 text-xs tracking-wider mb-2">
                         BOARDING PASS

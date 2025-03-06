@@ -104,8 +104,8 @@ const EnvelopeAnimation = () => {
             className="relative h-screen w-full flex items-center justify-center bg-gray-100"
             style={{ perspective: '1000px' }} // 3D transform perspective
         >
-            <ThreeBackground deviceOrientation={deviceOrientation} 
-                motionEnabled={motionEnabled} />
+            {/* <ThreeBackground deviceOrientation={deviceOrientation} 
+                motionEnabled={motionEnabled} /> */}
 
             {/* Enable Motion Button */}
             {/* <EnableMotionButton onEnabled={setMotionEnabled} /> */}
