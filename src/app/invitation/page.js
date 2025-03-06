@@ -7,7 +7,7 @@ const EnvelopeAnimation = () => {
     const [isCardPulled, setIsCardPulled] = useState(false);
     const [isCardCentered, setIsCardCentered] = useState(false);
     const [flapsFaded, setFlapsFaded] = useState(false);
-    
+
 
     const handleEnvelopeClick = () => {
         if (!isOpen) {
@@ -139,6 +139,16 @@ const EnvelopeAnimation = () => {
                 </div>
 
             </div>
+
+            {/* Top Gradient Overlay: from the top of the screen to the envelope's top */}
+            <div
+                className="absolute left-0 w-full pointer-events-none"
+                style={{
+                    top: 0,
+                    height: 'calc(50vh - 8rem)', // envelope top = 50vh - 8rem
+                    background: 'linear-gradient(to bottom, #8e44ad, #f3f4f6)',
+                }}
+            ></div>
 
             <div
                 className="absolute bottom-0 left-0 w-full pointer-events-none"
