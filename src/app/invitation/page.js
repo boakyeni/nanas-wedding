@@ -147,6 +147,7 @@ const EnvelopeAnimation = () => {
                     top: 0,
                     height: 'calc(50vh - 8rem)', // envelope top = 50vh - 8rem
                     background: 'linear-gradient(to bottom, #8e44ad, #f3f4f6)',
+                    paddingTop: 'env(safe-area-inset-top)'
                 }}
             ></div>
 

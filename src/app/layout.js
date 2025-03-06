@@ -68,6 +68,12 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${parisienne.variable} ${montserrat.variable} ${tangerine.variable} antialiased`}
+        style={{
+          background: '#8e44ad',
+          margin: 0,
+          paddingTop: 'env(safe-area-inset-top)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
+      }}
       >
         {children}
       </body>
