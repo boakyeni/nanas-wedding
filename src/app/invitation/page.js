@@ -51,7 +51,9 @@ const EnvelopeAnimation = () => {
                         style={{
                             height: '50%',
                             zIndex: 3,
-                            transform: isOpen ? 'rotateX(180deg)' : 'rotateX(0deg)'
+                            transform: isOpen ? 'rotateX(180deg)' : 'rotateX(0deg)',
+                            
+                            
                         }}
                     >
                         {/* Outer triangle for a “border” effect */}
@@ -59,7 +61,9 @@ const EnvelopeAnimation = () => {
                             className="absolute inset-0"
                             style={{
                                 clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)',
-                                background: 'linear-gradient(135deg, #8e44ad, #9b59b6)'
+                                background: 'linear-gradient(135deg, #8e44ad, #9b59b6)',
+                                background: 'linear-gradient(to right, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                             }}
                         />
                         {/* Inner triangle inset by 2px */}
@@ -71,7 +75,8 @@ const EnvelopeAnimation = () => {
                                 right: '2px',
                                 bottom: '2px',
                                 clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)',
-                                background: 'linear-gradient(135deg, #9b59b6, #8e44ad)'
+                                background: 'linear-gradient(to right, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                             }}
                         />
                     </div>
@@ -83,7 +88,8 @@ const EnvelopeAnimation = () => {
                             zIndex: 5,
                             opacity: flapsFaded ? 0.2 : 1,
                             clipPath: 'polygon(0% 0%, 0% 100%, 100% 50%)',
-                            background: 'linear-gradient(135deg, #8e44ad, #9b59b6)'
+                            background: 'linear-gradient(to bottom, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                         }}
                         onTransitionEnd={() => {
                             // Once the opacity transition ends, update isCardCentered.
@@ -100,7 +106,8 @@ const EnvelopeAnimation = () => {
                             zIndex: 5,
                             opacity: flapsFaded ? 0.2 : 1,
                             clipPath: 'polygon(100% 0%, 100% 100%, 0% 50%)',
-                            background: 'linear-gradient(135deg, #8e44ad, #9b59b6)'
+                            background: 'linear-gradient(to bottom, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                         }}
                     />
 
@@ -112,7 +119,8 @@ const EnvelopeAnimation = () => {
                             zIndex: 5,
                             opacity: flapsFaded ? 0.2 : 1,
                             clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                            background: 'linear-gradient(135deg, #8e44ad, #9b59b6)'
+                            background: 'linear-gradient(to left, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                         }}
                     />
                 </div>
