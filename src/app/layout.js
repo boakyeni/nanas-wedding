@@ -31,7 +31,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Nimako & Salim",
+  title: "Nimako & Saliu",
   description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
   openGraph: {
     title: "Nimako & Salim's Wedding Invitation",
@@ -47,7 +47,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nimako & Salim's Wedding Invitation",
+    title: "Nimako & Saliu's Wedding Invitation",
     description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
     images: ["/n_w.png"]
   }
