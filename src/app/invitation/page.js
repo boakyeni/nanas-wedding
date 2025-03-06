@@ -19,7 +19,12 @@ const EnvelopeAnimation = () => {
 
     const [isMobile, setIsMobile] = useState(false);
 
-    
+    const [showIntroImage, setShowIntroImage] = useState(true);
+    const [introImageOpacity, setIntroImageOpacity] = useState(1);
+
+    const [instructionMessage, setInstructionMessage] = useState('Tap on the envelope');
+    const [messageOpacity, setMessageOpacity] = useState(0);
+    const [isChangingMessage, setIsChangingMessage] = useState(false);
     
 
     useEffect(() => {
@@ -36,23 +41,61 @@ const EnvelopeAnimation = () => {
         };
     }, []);
 
+    // New effect for intro image timing
+    useEffect(() => {
+        // Start fading out after 3 seconds
+        const fadeTimeout = setTimeout(() => {
+            setIntroImageOpacity(0);
+        }, 4000);
+
+        // Remove from DOM after fade completes
+        const removeTimeout = setTimeout(() => {
+            setShowIntroImage(false);
+            setTimeout(() => {
+                setMessageOpacity(1);
+            }, 100);
+        }, 4500); // 3 seconds + 500ms for fade transition
+
+        return () => {
+            clearTimeout(fadeTimeout);
+            clearTimeout(removeTimeout);
+        };
+    }, []);
+
+
     const tiltX = deviceOrientation.gamma * 0.02; // left/right tilt
     const tiltY = deviceOrientation.beta * 0.02;  // front/back tilt
 
     // Only apply tilt if motion is enabled
     const envelopeTilt = motionEnabled ? `rotateX(${tiltY}deg) rotateY(${tiltX}deg)` : '';
 
+
+
     const handleEnvelopeClick = () => {
         if (!isOpen) {
             setIsOpen(true);
-            setTimeout(() => setIsCardPulled(true), 800);
+            setMessageOpacity(0);
+            setIsChangingMessage(true);
+            
+            setTimeout(() => {
+                setIsCardPulled(true);
+                // Change instruction after card is pulled
+                setInstructionMessage('Tap on card to reveal');
+                // Fade the new message in
+                setMessageOpacity(1);
+                setIsChangingMessage(false);
+            }, 800);
         }
     };
 
     const handleCardClick = () => {
         if (isCardPulled && !isCardCentered) {
             setFlapsFaded(true);
-
+            setMessageOpacity(0);
+            setTimeout(() => {
+                // Hide instruction once card is being revealed
+                setInstructionMessage('');
+            }, 500); // Wait for fade out to complete
         }
     };
 
@@ -67,12 +110,47 @@ const EnvelopeAnimation = () => {
             {/* Enable Motion Button */}
             {/* <EnableMotionButton onEnabled={setMotionEnabled} /> */}
 
+            {!showIntroImage && instructionMessage && (
+                <div 
+                    className={`absolute top-10 left-1/2 transform -translate-x-1/2 ${isChangingMessage ? 'pointer-events-none' : ''}`}
+                    style={{ 
+                        opacity: messageOpacity,
+                        transition: 'opacity 500ms ease-in-out',
+                        zIndex: 10
+                    }}
+                >
+                    <div className=" bg-stone-500 bg-opacity-90 text-white font-montserrat text-sm px-6 py-3 rounded-3xl shadow-md border">
+                        {instructionMessage}
+                    </div>
+                </div>
+            )}
+
+            {/* Intro Image Overlay */}
+            {showIntroImage && (
+                <div 
+                    className="absolute inset-0 flex items-center justify-center z-50"
+                    style={{ 
+                        opacity: introImageOpacity,
+                        transition: 'opacity 500ms ease-out',
+                        
+                    }}
+                >
+                    <img 
+                        src="/Subject.png" 
+                        alt="Intro" 
+                        className="max-w-full max-h-full object-contain"
+                    />
+                </div>
+            )}
+
+
 
             <div
                 className={`relative w-96 h-64 cursor-pointer ${!isOpen && 'hover:scale-105'} transition-transform duration-300 `}
                 onClick={handleEnvelopeClick}
                 style={{ zIndex: 2, transform: envelopeTilt }}
             >
+
                 {/* Main Envelope Container */}
                 <div className="absolute w-full h-full bg-purple-800 shadow-lg transition-opacity duration-300" style={{
                     background: 'linear-gradient(135deg, #8e44ad, #9b59b6)',

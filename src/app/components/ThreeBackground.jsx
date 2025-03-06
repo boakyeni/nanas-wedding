@@ -49,8 +49,8 @@ const ThreeBackground = ({ deviceOrientation = { beta: 0, gamma: 0 }, motionEnab
     const particleColors = [];
 
     const colorPalette = [
-      new THREE.Color(0x8e44ad), // Purple
-      new THREE.Color(0x9b59b6), // Lighter purple
+      new THREE.Color(0x371f76), // Purple
+      new THREE.Color(0x64389f), // Lighter purple
       new THREE.Color(0xb29043), // Gold
       new THREE.Color(0xf1c27d)  // Light gold
     ];

@@ -21,8 +21,8 @@ const InvitationCard = () => {
         <div className="relative w-full flex flex-col rounded-3xl">
             {/* Top Ticket Section */}
             <div className="flex flex-col items-center bg-gradient-to-r w-full aspect-[8/2] from-white via-amber-50/75 to-white rounded-t-3xl border border-amber-200 border-b-0 pt-2 shadow-sm backdrop-blur-sm">
-                <p className='mx-auto font-montserrat font-thin text-violet-900 text-2xl'>NOW BOARDING!</p>
-                <p className='mx-auto font-montserrat font-thin text-stone-500 text-lg'> <span className='font-tangerine text-stone-400 text-3xl pr-2'>for</span> ACCRA</p>
+                <p className='mx-auto font-tangerine font-thin text-[#860384] text-6xl pt-4'>Save the Date</p>
+                {/* <p className='mx-auto font-montserrat font-thin text-stone-500 text-lg'> <span className='font-tangerine text-stone-400 text-3xl pr-2'>for</span> ACCRA</p> */}
             </div>
 
             {/* Bottom Ticket Section */}
@@ -31,10 +31,11 @@ const InvitationCard = () => {
                     {/* <div className="text-stone-400 text-xs tracking-wider mb-2">
                         BOARDING PASS
                     </div> */}
-                    <div className="text-violet-950 text-2xl text-center font-tangerine mb-1 [text-shadow:_0_1px_1px_rgb(251,191,36,0.2)]">
-                        Save The Date
+                    <div className=" text-stone-600 text-sm font-montserrat font-thin [text-shadow:_0_1px_1px_rgb(251,191,36,0.2)]">
+                        NOW BOARDING!
                     </div>
-                    <div className="text-stone-400 text-xs uppercase tracking-wider mb-2 text-center pb-8">
+                    <p className='mx-auto font-montserrat font-thin text-stone-500 text-md text-right'> <span className='font-tangerine text-stone-400 text-xl pr-2'>for</span> ACCRA</p>
+                    <div className="text-stone-400 text-xs uppercase tracking-wider mb-2 text-center pb-4 pt-1">
                         JOIN US TO CELEBRATE OUR GREATEST ADVENTURE
                     </div>
                     {/* <div className="flex items-center gap-2 mb-2">
@@ -67,11 +68,11 @@ const InvitationCard = () => {
                     {/* <div className="text-2xl font-tangerine text-violet-950 mb-1 text-right">
                         Abdul Wahab
                     </div> */}
-                    <div className="text-stone-500 italic text-sm">
-                        Accra, Ghana
+                    <div className="flex justify-between text-stone-700 italic text-sm font-montserrat font-thin">
+                        <p>Destination:</p> <p>Accra, Ghana</p>
                     </div>
-                    <div className="text-violet-950 mb-4 text-sm font-montserrat">
-                        January 3, 2026
+                    <div className="flex justify-between text-violet-950 mb-4 text-sm italic font-montserrat font-thin">
+                        <p>Date:</p><p>January 3, 2026</p>
                     </div>
 
                     <div className="text-center text-stone-400 text-xs mb-2">
