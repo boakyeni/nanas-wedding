@@ -104,8 +104,8 @@ const EnvelopeAnimation = () => {
             className="relative h-screen w-full flex items-center justify-center bg-gray-100"
             style={{ perspective: '1000px' }} // 3D transform perspective
         >
-            {/* <ThreeBackground deviceOrientation={deviceOrientation} 
-                motionEnabled={motionEnabled} /> */}
+            <ThreeBackground deviceOrientation={deviceOrientation} 
+                motionEnabled={motionEnabled} />
 
             {/* Enable Motion Button */}
             {/* <EnableMotionButton onEnabled={setMotionEnabled} /> */}
@@ -223,7 +223,7 @@ const EnvelopeAnimation = () => {
                         className="absolute top-0 right-0 w-1/2 h-full transition-opacity duration-300"
                         style={{
                             zIndex: 6,
-                            opacity: flapsFaded ? 0.2 : 1,
+                            opacity: flapsFaded ? 0 : 1,
                             clipPath: 'polygon(100% 0%, 100% 100%, 0% 50%)',
                             background: 'linear-gradient(to bottom, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
                             boxShadow: '0 4px 8px rgba(0,0,0,0.2)',

@@ -27,7 +27,7 @@ const InvitationCard = () => {
             </div>
 
             {/* Bottom Ticket Section */}
-            <div className="[border-top-style:dashed] bg-gradient-to-r from-white via-amber-50/50 to-white rounded-b-3xl border border-amber-200 px-4 pb-4 shadow-lg ">
+            <div className=" bg-gradient-to-r from-white via-amber-50/50 to-white rounded-b-3xl border border-amber-200 px-4 pb-4 shadow-lg ">
                 <div className="relative z-10">
                     {/* <div className="text-stone-400 text-xs tracking-wider mb-2">
                         BOARDING PASS
@@ -70,7 +70,7 @@ const InvitationCard = () => {
                         Abdul Wahab
                     </div> */}
                     <div className="text-violet-950 font-tangerine  text-2xl  text-left">
-                        Nana Serwaa
+                        Nana-Serwaa
                     </div>
                     <div className='pt-6'>
                         <div className="flex justify-between text-violet-950 italic text-sm font-montserrat ">

@@ -1,14 +1,17 @@
 'use client'
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 
 const ThreeBackground = ({ deviceOrientation = { beta: 0, gamma: 0 }, motionEnabled = false }) => {
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
   const cameraRef = useRef(null);
-  const particlesRef = useRef(null);
+  const airplaneRef = useRef(null);
   const frameIdRef = useRef(null);
+  const clockRef = useRef(new THREE.Clock());
 
   useEffect(() => {
     // Setup Three.js scene
@@ -42,78 +45,240 @@ const ThreeBackground = ({ deviceOrientation = { beta: 0, gamma: 0 }, motionEnab
     directionalLight.position.set(0, 10, 10);
     scene.add(directionalLight);
 
-    // Create particle system for a dynamic, dreamy background
-    const particleCount = 300;
-    const particles = new THREE.BufferGeometry();
-    const particlePositions = [];
-    const particleColors = [];
-
-    const colorPalette = [
-      new THREE.Color(0x371f76), // Purple
-      new THREE.Color(0x64389f), // Lighter purple
-      new THREE.Color(0xb29043), // Gold
-      new THREE.Color(0xf1c27d)  // Light gold
-    ];
-
-    for (let i = 0; i < particleCount; i++) {
-      // Position particles throughout the scene
-      const x = (Math.random() - 0.5) * 30;
-      const y = Math.random() * 30 - 15; // Full height coverage
-      const z = (Math.random() - 0.5) * 15 - 5; // Some depth variation
+    // Create trail effect (this will be attached to the airplane later)
+    const createTrail = () => {
+      const trailGeometry = new THREE.BufferGeometry();
+      const trailMaterial = new THREE.PointsMaterial({
+        color: 0xf1c27d,
+        size: 0.01, // Even smaller trail size for the tiny airplane
+        transparent: true,
+        opacity: 0.7,
+        blending: THREE.AdditiveBlending
+      });
       
-      particlePositions.push(x, y, z);
+      // Create trail points
+      const trailPositions = [];
+      for (let i = 0; i < 50; i++) {
+        trailPositions.push(-i * 0.1, 0, 0); // Initial positions
+      }
       
-      // Random color from palette
-      const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-      particleColors.push(color.r, color.g, color.b);
-    }
+      trailGeometry.setAttribute('position', new THREE.Float32BufferAttribute(trailPositions, 3));
+      const trail = new THREE.Points(trailGeometry, trailMaterial);
+      
+      return { trail, trailPositions };
+    };
 
-    particles.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
-    particles.setAttribute('color', new THREE.Float32BufferAttribute(particleColors, 3));
-
-    const particleMaterial = new THREE.PointsMaterial({
-      size: 0.25,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending
-    });
-
-    const particleSystem = new THREE.Points(particles, particleMaterial);
-    scene.add(particleSystem);
-    particlesRef.current = particleSystem;
+    // Create airplane group to hold the model and trail
+    const airplaneGroup = new THREE.Group();
+    const { trail, trailPositions } = createTrail();
+    airplaneGroup.add(trail);
+    
+    // Store trail data for animation
+    airplaneGroup.userData = {
+      trail: trail,
+      trailPositions: trailPositions
+    };
+    
+    // Load the MTL and then OBJ model
+    // First load the materials file
+    const mtlLoader = new MTLLoader();
+    mtlLoader.load(
+      '/airplane.mtl', // Path to your MTL file
+      (materials) => {
+        materials.preload();
+        
+        // Create OBJ loader and set materials
+        const objLoader = new OBJLoader();
+        objLoader.setMaterials(materials);
+        
+        // Now load the OBJ file
+        objLoader.load(
+          '/airplane.obj', // Path to your OBJ file
+          (object) => {
+            // Make the airplane much smaller
+            object.scale.set(0.001, 0.001, 0.001); // 10x smaller than before
+            
+            // Center the model
+            const box = new THREE.Box3().setFromObject(object);
+            const center = box.getCenter(new THREE.Vector3());
+            object.position.sub(center);
+            
+            // Reset any default rotations and apply specific orientation
+            // Rotate to show side view with nose forward, not up
+            object.rotation.set(0, 0, 0); // Reset all rotations
+            
+            // These rotations may need adjustment depending on how your model is oriented
+            object.rotation.y = Math.PI / 2; // 90 degrees - to see the side
+            object.rotation.x = -Math.PI / 2; // 90 degrees down - to point nose forward
+            
+            // Add the model to the airplane group
+            airplaneGroup.add(object);
+            
+            // Add airplane to scene
+            scene.add(airplaneGroup);
+            airplaneRef.current = airplaneGroup;
+            
+            // Position the airplane higher on screen
+            airplaneGroup.position.set(0, 8, 0);
+          },
+          (xhr) => {
+            console.log((xhr.loaded / xhr.total * 100) + '% OBJ loaded');
+          },
+          (error) => {
+            console.error('Error loading OBJ model:', error);
+            
+            // Fallback to a simple airplane if model fails to load
+            const fallbackPlane = createFallbackPlane();
+            scene.add(fallbackPlane);
+            airplaneRef.current = fallbackPlane;
+          }
+        );
+      },
+      (xhr) => {
+        console.log((xhr.loaded / xhr.total * 100) + '% MTL loaded');
+      },
+      (error) => {
+        console.error('Error loading MTL file:', error);
+        
+        // If MTL fails, try to load OBJ without materials
+        const objLoader = new OBJLoader();
+        objLoader.load(
+          '/airplane.obj',
+          (object) => {
+            object.traverse((child) => {
+              if (child instanceof THREE.Mesh) {
+                // Apply a fallback material
+                child.material = new THREE.MeshPhongMaterial({ 
+                  color: 0xFFFFFF,
+                  emissive: 0x371f76,
+                  emissiveIntensity: 0.3,
+                  shininess: 90,
+                });
+              }
+            });
+            
+            object.scale.set(0.001, 0.001, 0.001);
+            
+            const box = new THREE.Box3().setFromObject(object);
+            const center = box.getCenter(new THREE.Vector3());
+            object.position.sub(center);
+            
+            airplaneGroup.add(object);
+            scene.add(airplaneGroup);
+            airplaneRef.current = airplaneGroup;
+            airplaneGroup.position.set(0, 8, 0);
+          },
+          null,
+          (error) => {
+            console.error('Error loading OBJ as fallback:', error);
+            const fallbackPlane = createFallbackPlane();
+            scene.add(fallbackPlane);
+            airplaneRef.current = fallbackPlane;
+          }
+        );
+      }
+    );
+    
+    // Fallback airplane if OBJ fails to load
+    const createFallbackPlane = () => {
+      const fallbackGroup = new THREE.Group();
+      
+      // Simple plane shape
+      const bodyGeometry = new THREE.ConeGeometry(0.15, 1, 8);
+      const bodyMaterial = new THREE.MeshPhongMaterial({ 
+        color: 0xFFFFFF,
+        emissive: 0x371f76,
+        emissiveIntensity: 0.3,
+      });
+      const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+      body.rotation.z = Math.PI / 2; // Rotate to point forward
+      fallbackGroup.add(body);
+      
+      // Wings
+      const wingGeometry = new THREE.BoxGeometry(0.7, 0.05, 0.3);
+      const wingMaterial = new THREE.MeshPhongMaterial({ color: 0xb29043 });
+      const wings = new THREE.Mesh(wingGeometry, wingMaterial);
+      fallbackGroup.add(wings);
+      
+      fallbackGroup.position.set(0, 5, 0);
+      fallbackGroup.add(trail);
+      fallbackGroup.userData = airplaneGroup.userData;
+      
+      return fallbackGroup;
+    };
 
     // Animation loop
     const animate = () => {
-      frameIdRef.current = requestAnimationFrame(animate);
-      
-      // Make particles float downward slowly
-      if (particlesRef.current && particlesRef.current.geometry) {
-        const positions = particlesRef.current.geometry.attributes.position.array;
+        frameIdRef.current = requestAnimationFrame(animate);
+        const delta = clockRef.current.getDelta();
         
-        for (let i = 0; i < particleCount; i++) {
-          const i3 = i * 3;
+        if (airplaneRef.current) {
+          const airplane = airplaneRef.current;
+          const time = clockRef.current.getElapsedTime();
+          const radius = 3; // Size of the circular flight path
+          const height = 8; // Base height
+          const speed = -0.4; // Flight speed
           
-          // Move particles down slowly
-          positions[i3 + 1] -= 0.03;
+          // Compute current position on a circular path:
+          const currentPos = new THREE.Vector3(
+            radius * Math.cos(time * speed),
+            height + Math.sin(time * speed * 0.5) * 0.5,
+            radius * Math.sin(time * speed) * 0.8
+          );
           
-          // Add a slight sway
-          positions[i3] += Math.sin(Date.now() * 0.001 + i) * 0.01;
+          // Compute a slightly future position for direction calculation:
+          const nextTime = time + 0.01;
+          const nextPos = new THREE.Vector3(
+            radius * Math.cos(nextTime * speed),
+            height + Math.sin(nextTime * speed * 0.5) * 0.5,
+            radius * Math.sin(nextTime * speed) * 0.8
+          );
           
-          // Reset particles that go too low
-          if (positions[i3 + 1] < -15) {
-            positions[i3] = (Math.random() - 0.5) * 30;
-            positions[i3 + 1] = 15; // Reset to top
-            positions[i3 + 2] = (Math.random() - 0.5) * 15 - 5;
+          // Set the airplane's position:
+          airplane.position.copy(currentPos);
+          
+          // Calculate the direction vector (tangent) to the flight path:
+          const direction = new THREE.Vector3().subVectors(nextPos, currentPos).normalize();
+          const targetPosition = new THREE.Vector3().copy(currentPos).add(direction);
+          
+          // Create a lookAt matrix from currentPos to targetPosition:
+          const lookAtMatrix = new THREE.Matrix4();
+          lookAtMatrix.lookAt(currentPos, targetPosition, new THREE.Vector3(0, 1, 0));
+          const targetQuaternion = new THREE.Quaternion().setFromRotationMatrix(lookAtMatrix);
+          
+          // Apply a correction to flip the model if it’s upside down.
+          // Adjust the axis and angle if your model needs a different correction.
+          const correctionQuaternion = new THREE.Quaternion();
+          correctionQuaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI);
+          targetQuaternion.multiply(correctionQuaternion);
+          
+          // Smoothly interpolate the airplane’s quaternion toward the target.
+          airplane.quaternion.slerp(targetQuaternion, 0.1);
+          
+          // Update trail – note the fix for the Z coordinate:
+          if (airplane.userData && airplane.userData.trail) {
+            const trailPositions = airplane.userData.trail.geometry.attributes.position.array;
+            const trailOffset = new THREE.Vector3(-0.5, 0, 0);
+            trailOffset.applyQuaternion(airplane.quaternion);
+            
+            // Shift all trail points back:
+            for (let i = (trailPositions.length / 3) - 1; i > 0; i--) {
+              trailPositions[i * 3]     = trailPositions[(i - 1) * 3];
+              trailPositions[i * 3 + 1] = trailPositions[(i - 1) * 3 + 1];
+              trailPositions[i * 3 + 2] = trailPositions[(i - 1) * 3 + 2];
+            }
+            
+            // Update the first trail point:
+            trailPositions[0] = trailOffset.x;
+            trailPositions[1] = trailOffset.y;
+            trailPositions[2] = trailOffset.z;
+            
+            airplane.userData.trail.geometry.attributes.position.needsUpdate = true;
           }
         }
         
-        particlesRef.current.geometry.attributes.position.needsUpdate = true;
-      }
-      
-      // Render the scene
-      renderer.render(scene, camera);
-    };
+        rendererRef.current.render(sceneRef.current, cameraRef.current);
+      };
     
     animate();
 
@@ -138,9 +303,17 @@ const ThreeBackground = ({ deviceOrientation = { beta: 0, gamma: 0 }, motionEnab
       }
       
       // Dispose of geometries and materials
-      if (particlesRef.current) {
-        particlesRef.current.geometry.dispose();
-        particlesRef.current.material.dispose();
+      if (airplaneRef.current) {
+        airplaneRef.current.traverse((child) => {
+          if (child.geometry) child.geometry.dispose();
+          if (child.material) {
+            if (Array.isArray(child.material)) {
+              child.material.forEach(material => material.dispose());
+            } else {
+              child.material.dispose();
+            }
+          }
+        });
       }
     };
   }, []);
