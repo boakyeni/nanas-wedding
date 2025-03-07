@@ -154,19 +154,19 @@ const EnvelopeAnimation = () => {
 
             <div
                 className={`relative w-96 h-64 cursor-pointer ${!isOpen && 'hover:scale-105'} transition-transform duration-300 `}
-                onClick={handleEnvelopeClick}
+                
                 style={{ zIndex: 2, transform: envelopeTilt }}
             >
 
                 {/* Main Envelope Container */}
                 <div className="absolute w-full h-full bg-purple-800 shadow-lg transition-opacity duration-300" style={{
-                    background: 'linear-gradient(135deg, #8e44ad, #9b59b6)',
+                    background: 'linear-gradient(to right, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
 
                 }}>
 
                     <div className="absolute inset-1 transition-opacity duration-300" style={{
                         zIndex: 1,
-                        background: 'linear-gradient(135deg, #8e44ad, #9b59b6)',
+                        background: 'linear-gradient(to right, #b29043, #f1c27d, #b29043, #f1c27d, #b29043)',
                         opacity: flapsFaded ? 0.2 : 1,
 
                     }} />
@@ -253,7 +253,7 @@ const EnvelopeAnimation = () => {
 
                 {/* Card */}
                 <div
-                    onClick={handleCardClick}
+                    
                     className={`absolute left-1/2 w-80 h-48 shadow-xl transform -translate-x-1/2 transition-all duration-1000 cursor-pointer
             ${!isCardPulled ? 'translate-y-0' : (isCardCentered ? '-translate-y-32 max-h-[90vh] max-w-[90vw]' : '-translate-y-32')}`}
                     style={{
@@ -275,15 +275,15 @@ const EnvelopeAnimation = () => {
             </div>
 
             {/* Top Gradient Overlay: from the top of the screen to the envelope's top */}
-            {/* <div
+            <div
                 className="absolute left-0 w-full pointer-events-none"
                 style={{
                     top: 0,
                     height: 'calc(50vh - 8rem)', // envelope top = 50vh - 8rem
-                    background: 'linear-gradient(to bottom, #8e44ad, #f3f4f6)',
+                    background: 'linear-gradient(to bottom, #371f76,#64389f,#f3f4f6)',
                     paddingTop: 'env(safe-area-inset-top)'
                 }}
-            ></div> */}
+            ></div>
 
             <div
                 className="absolute bottom-0 left-0 w-full pointer-events-none"

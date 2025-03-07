@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${parisienne.variable} ${montserrat.variable} ${tangerine.variable} antialiased`}
         style={{
-          background: '#f3f4f6',
+          background: '#371f76',
           margin: 0,
           paddingTop: 'env(safe-area-inset-top)',
           paddingBottom: 'env(safe-area-inset-bottom)',
