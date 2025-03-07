@@ -158,6 +158,7 @@ const RSVP = () => {
                       <label htmlFor="guests" className="block text-sm font-medium text-gray-700">Number of Additional Guests</label>
                       <input
                         type="number"
+                        pattern="[0-9]*"
                         id="guests"
                         name="guests"
                         min="0"
