@@ -69,7 +69,13 @@ const EnvelopeAnimation = () => {
     // Only apply tilt if motion is enabled
     const envelopeTilt = motionEnabled ? `rotateX(${tiltY}deg) rotateY(${tiltX}deg)` : '';
 
-
+    const handleScreenClick = () => {
+        if (!isOpen) {
+            handleEnvelopeClick();
+        } else if (isCardPulled && !isCardCentered) {
+            handleCardClick();
+        }
+    }
 
     const handleEnvelopeClick = () => {
         if (!isOpen) {
@@ -103,6 +109,7 @@ const EnvelopeAnimation = () => {
         <div
             className="relative h-screen w-full flex items-center justify-center bg-gray-100"
             style={{ perspective: '1000px' }} // 3D transform perspective
+            onClick={handleScreenClick}
         >
             <ThreeBackground deviceOrientation={deviceOrientation} 
                 motionEnabled={motionEnabled} />
