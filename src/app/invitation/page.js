@@ -150,7 +150,7 @@ const EnvelopeAnimation = () => {
 
             {showBottomButton && (
                 <Link 
-                    className={`absolute bottom-10 left-1/2 transform -translate-x-1/2 `}
+                    className={`absolute bottom-48 left-1/2 transform -translate-x-1/2 `}
                     style={{ 
                         opacity: bottomButtonOpacity,
                         transition: 'opacity 500ms ease-in-out',
