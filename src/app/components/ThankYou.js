@@ -41,7 +41,7 @@ const ThankYou = () => {
       </div>
       <h2 className="text-2xl font-serif text-gray-800 mb-4">Thank You!</h2>
       <p className="text-gray-600 mb-8">
-        Your RSVP has been received. We're excited to see you there!
+        Your RSVP has been received!
       </p>
       
       {/* Countdown section from the second component */}
