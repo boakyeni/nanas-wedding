@@ -280,7 +280,7 @@ const EnvelopeAnimation = () => {
                 style={{
                     top: 0,
                     height: 'calc(50vh - 8rem)', // envelope top = 50vh - 8rem
-                    background: 'linear-gradient(to bottom, #371f76 0%, #64389f 40%, #9d78c4 70%, #cebede 90%, #f3f4f6 100%)',
+                    background: 'linear-gradient(to bottom, #371f76, #f3f4f6)',
                 }}
             ></div>
 
