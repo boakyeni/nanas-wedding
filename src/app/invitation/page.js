@@ -4,6 +4,7 @@ import InvitationCard from '../components/InvitationCard';
 import ThreeBackground from '../components/ThreeBackground';
 import useDeviceOrientation from '../hooks/useDeviceOrientation';
 import EnableMotionButton from '../components/EnableMotionButton';
+import Link from 'next/link';
 
 
 const EnvelopeAnimation = () => {
@@ -25,6 +26,9 @@ const EnvelopeAnimation = () => {
     const [instructionMessage, setInstructionMessage] = useState('Tap on the envelope');
     const [messageOpacity, setMessageOpacity] = useState(0);
     const [isChangingMessage, setIsChangingMessage] = useState(false);
+
+    const [showBottomButton, setShowBottomButton] = useState(false);
+    const [bottomButtonOpacity, setBottomButtonOpacity] = useState(0);
     
 
     useEffect(() => {
@@ -61,6 +65,18 @@ const EnvelopeAnimation = () => {
             clearTimeout(removeTimeout);
         };
     }, []);
+
+    useEffect(() => {
+        if (isCardCentered) {
+            // Wait a moment before showing the button
+            setTimeout(() => {
+                setShowBottomButton(true);
+                setTimeout(() => {
+                    setBottomButtonOpacity(1);
+                }, 100);
+            }, 1000);
+        }
+    }, [isCardCentered]);
 
 
     const tiltX = deviceOrientation.gamma * 0.02; // left/right tilt
@@ -131,6 +147,23 @@ const EnvelopeAnimation = () => {
                     </div>
                 </div>
             )}
+
+            {showBottomButton && (
+                <Link 
+                    className={`absolute bottom-10 left-1/2 transform -translate-x-1/2 `}
+                    style={{ 
+                        opacity: bottomButtonOpacity,
+                        transition: 'opacity 500ms ease-in-out',
+                        zIndex: 10
+                    }}
+                    href='rsvp'
+                >
+                    <div className=" bg-stone-500 bg-opacity-90 text-white font-montserrat text-sm px-6 py-3 rounded-3xl shadow-md border">
+                        Tap Here to RSVP
+                    </div>
+                </Link>
+            )}
+
 
             {/* Intro Image Overlay */}
             {showIntroImage && (
