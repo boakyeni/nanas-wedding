@@ -247,8 +247,8 @@ const RSVP = () => {
                 </div>
 
                 <div className="mt-12 text-center text-gray-600">
-                    <p>If you have any questions, please contact Celine at</p>
-                    <p className="text-purple-700 font-medium">celinehdei@gmail.com</p>
+                    <p>If you have any questions, please contact us</p>
+                    <p className="text-purple-700 font-medium"></p>
                 </div>
             </div>
         </div>
