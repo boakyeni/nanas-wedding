@@ -35,9 +35,9 @@ const InvitationCard = () => {
                     <div className=" text-violet-950 text-sm font-montserrat [text-shadow:_0_1px_1px_rgb(251,191,36,0.2)]">
                         NOW BOARDING!
                     </div>
-                    <p className='mx-auto font-montserrat text-violet-950 text-md text-right pb-4'> <span className='font-tangerine text-stone-400 text-xl pr-2'>for</span> ACCRA</p>
-                    <div className="text-violet-950 font-tangerine  text-2xl text-right">
-                        Abdul Wahab
+                    <p className='mx-auto font-montserrat text-violet-950 text-md text-right pb-3'> <span className='font-tangerine text-stone-400 text-xl pr-2'>for</span> ACCRA</p>
+                    <div className=" text-violet-950 font-tangerine  text-2xl text-right">
+                        Nana-Serwaa
                     </div>
                     {/* <div className="flex items-center gap-2 mb-2">
                         <div className="bg-stone-50 rounded-full p-1">
@@ -69,10 +69,10 @@ const InvitationCard = () => {
                     {/* <div className="text-2xl font-tangerine text-violet-950 mb-1 text-right">
                         Abdul Wahab
                     </div> */}
-                    <div className="text-violet-950 font-tangerine  text-2xl  text-left">
-                        Nana-Serwaa
+                    <div className="text-violet-950 font-tangerine mt-4 text-2xl  text-left">
+                        Abdul Wahab
                     </div>
-                    <div className='pt-6'>
+                    <div className='pt-2 w-[70%]'>
                         <div className="flex justify-between text-violet-950 italic text-sm font-montserrat ">
                             <p>Destination:</p> <p>Accra, Ghana</p>
                         </div>
@@ -80,7 +80,7 @@ const InvitationCard = () => {
                             <p>Date:</p><p>January 3, 2026</p>
                         </div>
                     
-
+                    </div>
                     <div className="text-center text-stone-400 text-xs mb-2">
                         FORMAL INVITATION TO FOLLOW
                     </div>
@@ -95,7 +95,7 @@ const InvitationCard = () => {
                             />
                         ))}
                     </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

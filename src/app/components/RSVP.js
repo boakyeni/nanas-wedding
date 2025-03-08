@@ -52,32 +52,34 @@ const RSVP = () => {
         e.preventDefault();
         setIsSubmitting(true);
         setError('');
-
+        
         try {
-            // Send data to your backend
-            // const response = await fetch('/api/rsvp', { 
-            //   method: 'POST', 
-            //   headers: {
-            //     'Content-Type': 'application/json'
-            //   },
-            //   body: JSON.stringify(formData) 
-            // });
-            await new Promise(resolve => setTimeout(resolve, 1500))
-
-            // Check if the request was successful
-            if (true) {
-                setSubmitted(true);
-                setIsSubmitting(false);
-            } else {
-                // Handle API error responses
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Submission failed');
-            }
-        } catch (err) {
-            setError(err.message || 'Something went wrong. Please try again.');
+        //   const response = await fetch('/api/rsvp', {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(formData)
+        //   });
+          
+        //   const data = await response.json();
+          await new Promise(resolve => setTimeout(resolve, 1500))
+          
+          if (true) {
+            // Successfully submitted
+            setSubmitted(true);
             setIsSubmitting(false);
+          } else {
+            // Use the error message from your Flask backend
+            throw new Error(data.error || 'Submission failed. Please try again.');
+          }
+        } catch (err) {
+          console.error('RSVP submission error:', err);
+          setError('Something went wrong. Please try again.');
+          setIsSubmitting(false);
         }
-    };
+      };
+
 
     // Common style for selection buttons
     const buttonCommonClasses = "px-8 py-3 rounded-md border text-sm font-medium transition-all duration-300 shadow-sm";
