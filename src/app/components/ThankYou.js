@@ -69,7 +69,7 @@ const ThankYou = () => {
         <p>Please save this information for your records:</p>
         <p className="mt-4 font-medium">Date: January 3, 2026</p>
         <p className="font-medium">Location: East Legon, Accra, Ghana</p>
-        <p className="mt-4">A confirmation has been sent to your email address.</p>
+        <p className="mt-4">A reminder will be sent to your email address in autumn.</p>
       </div>
     </div>
   );

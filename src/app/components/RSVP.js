@@ -34,13 +34,6 @@ const RSVP = () => {
         }
     };
 
-    const handleRadioChange = (e) => {
-        setFormData({
-            ...formData,
-            attending: e.target.value
-        });
-    };
-
     const handleAttendingClick = (value) => {
         setFormData({
             ...formData,
@@ -149,7 +142,7 @@ const RSVP = () => {
                                         <button
                                             type="button"
                                             className={`${buttonCommonClasses} ${formData.attending === 'no' ? 'text-white ' : 'text-gray-700 border-gray-300 hover:border-purple-300'}`}
-                                            style={formData.attending === 'no' ? { background: goldGradient } : {}}
+                                            style={formData.attending === 'no' ? { background: purpleGradient } : {}}
                                             onClick={() => handleAttendingClick('no')}
                                         >
                                             No, I'll celebrate in spirit
@@ -173,7 +166,7 @@ const RSVP = () => {
                                                 <button
                                                     type="button"
                                                     className={`${buttonCommonClasses} ${formData.plusOne === false ? 'text-white ' : 'text-gray-700 border-gray-300 hover:border-purple-300'}`}
-                                                    style={formData.plusOne === false ? { background: goldGradient } : {}}
+                                                    style={formData.plusOne === false ? { background: purpleGradient } : {}}
                                                     onClick={() => setFormData({ ...formData, plusOne: false, plusOneName: '' })}
                                                 >
                                                     No
@@ -254,8 +247,8 @@ const RSVP = () => {
                 </div>
 
                 <div className="mt-12 text-center text-gray-600">
-                    <p>If you have any questions, please contact us at</p>
-                    <p className="text-purple-700 font-medium">celebrate@example.com</p>
+                    <p>If you have any questions, please contact Celine at</p>
+                    <p className="text-purple-700 font-medium">celinehdei@gmail.com</p>
                 </div>
             </div>
         </div>

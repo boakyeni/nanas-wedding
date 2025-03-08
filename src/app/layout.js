@@ -34,20 +34,20 @@ export const metadata = {
   title: "Nimako & Saliu",
   description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
   openGraph: {
-    title: "Nimako & Saliu's Wedding Invitation",
+    title: "Nimako & Saliu's Wedding",
     description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
     images: [
       {
         url: "/n_w.png",
         width: 1500,
         height: 1500,
-        alt: "Nimako & Saliu Wedding Invitation"
+        alt: "Nimako & Saliu Wedding"
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nimako & Saliu's Wedding Invitation",
+    title: "Nimako & Saliu's Wedding",
     description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
     images: ["/n_w.png"]
   }
