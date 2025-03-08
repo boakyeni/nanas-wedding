@@ -47,18 +47,18 @@ const RSVP = () => {
         setError('');
         
         try {
-        //   const response = await fetch('/api/rsvp', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(formData)
-        //   });
+          const response = await fetch('/api/rsvp', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
           
-        //   const data = await response.json();
-          await new Promise(resolve => setTimeout(resolve, 1500))
+          const data = await response.json();
+        //   await new Promise(resolve => setTimeout(resolve, 1500))
           
-          if (true) {
+          if (response.status === 201) {
             // Successfully submitted
             setSubmitted(true);
             setIsSubmitting(false);
