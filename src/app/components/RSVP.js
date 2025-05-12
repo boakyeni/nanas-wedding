@@ -153,7 +153,7 @@ const RSVP = () => {
                                 {formData.attending === 'yes' && (
                                     <>
                                         <div>
-                                            <p className="block text-sm font-medium text-gray-700 mb-3">Are you bringing a plus one?</p>
+                                            {/* <p className="block text-sm font-medium text-gray-700 mb-3">Are you bringing a plus one?</p>
                                             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                                                 <button
                                                     type="button"
@@ -171,10 +171,10 @@ const RSVP = () => {
                                                 >
                                                     No
                                                 </button>
-                                            </div>
+                                            </div> */}
 
                                             {/* Show name input only if they are bringing a plus one */}
-                                            {formData.plusOne && (
+                                            {/* {formData.plusOne && (
                                                 <div className="mt-6">
                                                     <label htmlFor="plusOneName" className="block text-sm font-medium text-gray-700">
                                                         Plus One's Name
@@ -190,7 +190,7 @@ const RSVP = () => {
                                                         required={formData.plusOne}
                                                     />
                                                 </div>
-                                            )}
+                                            )} */}
                                         </div>
 
                                         <div>
