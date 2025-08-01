@@ -8,16 +8,16 @@ const Turn = ({ children }) => {
 
   // Handler to determine tap position and trigger a page turn
   const handleTap = (e) => {
-    if (!bookRef.current) return;
-    const rect = bookRef.current.getBoundingClientRect();
-    const tapX = e.clientX - rect.left; // tap position relative to the container
-    const midPoint = rect.width / 2;
+    if (!bookRef.current || !window.jQuery) return;
 
-    // If tap is in the left half, go to previous page; otherwise, next page.
-    if (tapX < midPoint) {
-      window.jQuery(bookRef.current).turn('previous');
+    const $book = window.jQuery(bookRef.current);
+    const totalPages = $book.turn('pages');
+    const currentPage = $book.turn('page');
+
+    if (currentPage < totalPages) {
+      $book.turn('next');
     } else {
-      window.jQuery(bookRef.current).turn('next');
+      $book.turn('page', 1); // wrap to first page
     }
   };
 
@@ -40,8 +40,8 @@ const Turn = ({ children }) => {
         timer = setTimeout(() => {
           try {
             $(bookRef.current).turn({
-              width: 800,
-              height: 600,
+              width: 300,
+              height: 450,
               autoCenter: true,
               display: 'single',
               acceleration: true, // Disable acceleration to prevent some errors
@@ -75,16 +75,28 @@ const Turn = ({ children }) => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-white p-4">
-      <div
-        ref={bookRef}
-        className="magazine"
-        onClick={handleTap}
-        style={{ cursor: 'pointer' }} // Optional: shows pointer to indicate interactivity
-      >
-        {children}
+<div className="w-full min-h-screen flex items-center justify-center bg-white p-4 relative">
+  {/* Book shadow/back layer */}
+  <div className="absolute z-0 translate-x-2 translate-y-2 w-[300px] h-[450px] bg-stone-300 rounded-r-3xl rounded-l-lg" />
+
+  {/* Actual book on top */}
+  <div
+    ref={bookRef}
+    className="magazine z-10 rounded-r-3xl rounded-l-md"
+    onClick={handleTap}
+    style={{
+      cursor: 'pointer',
+      perspective: '1500px',
+    }}
+  >
+    {React.Children.map(children, (child) => (
+      <div className="relative w-full h-full bg-white rounded-r-3xl rounded-l-md  overflow-hidden">
+        {child}
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 
