@@ -31,3 +31,16 @@ export async function POST(request) {
         );
     }
 }
+
+export async function GET() {
+  try {
+    const response = await fetch(`${process.env.FLASK_API_URL}/api/rsvps`);
+
+    const data = await response.json();
+
+    return Response.json(data, { status: response.status });
+  } catch (error) {
+    console.error('Error fetching RSVPs:', error);
+    return Response.json({ error: 'Failed to fetch RSVP data' }, { status: 500 });
+  }
+}

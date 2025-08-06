@@ -75,7 +75,7 @@ const Turn = ({ children }) => {
   }, []);
 
   return (
-<div className="w-full min-h-screen flex items-center justify-center bg-white p-4 relative">
+<div className="w-full min-h-screen flex items-center justify-center bg-stone-300 p-4 relative">
   {/* Book shadow/back layer */}
   <div className="absolute z-0 translate-x-2 translate-y-2 w-[300px] h-[450px] bg-stone-300 rounded-r-3xl rounded-l-lg" />
 

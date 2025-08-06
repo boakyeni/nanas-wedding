@@ -60,3 +60,13 @@ input {
 textarea {
   color: #44403c;
 }
+
+.text-gradient-gold {
+  background: linear-gradient(to bottom, #b29043, #f1c27d, #b29043, #f1c27d, #b29043);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark-royal-gradient {
+  background: linear-gradient(to bottom right, #001f4d, #2c3e91, #000e2e);
+}
