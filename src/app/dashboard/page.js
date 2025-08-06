@@ -108,7 +108,7 @@ export default function DashboardPage() {
                 <SummaryCard title="Attending" value={attending} />
                 <SummaryCard title="Plus Ones" value={plusOnes} />
             </div>
-
+            <div className='flex flex-row justify-between'>
             <button
                 onClick={handleDownload}
                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
@@ -124,6 +124,7 @@ export default function DashboardPage() {
                 value={globalFilter}
                 onChange={(e) => setGlobalFilter(e.target.value)}
             />
+            </div>
 
             {/* Data Table */}
             <div className="overflow-x-auto">
