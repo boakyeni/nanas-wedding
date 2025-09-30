@@ -1,6 +1,6 @@
 // app/page.js
 'use client';
-
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { Plane, Heart } from 'lucide-react';
 import Countdown from './components/Countdown';
@@ -28,7 +28,8 @@ const WeddingsMap = dynamic(() => import('./components/WeddingsMap'), { ssr: fal
 const gradientGoldHover =
   'text-transparent bg-clip-text bg-white hover:bg-[linear-gradient(to_bottom,#b29043,#f1c27d,#b29043,#f1c27d,#b29043)] transition';
 
-export default function Home() {
+export default function Home({ searchParams }) {
+  const name = React.use(searchParams).name || "";
   const slides = [
     { src: "/n_w.png", alt: "Arrival", caption: "We landed at dawn in Tulum." },
     { src: "/n_w.png", alt: "Beach",   caption: "Morning walks and quiet waves." },
@@ -78,6 +79,7 @@ const pictures = [
         </header> */}
         {/* Shows once per session; reads ?name= if present */}
       <SplashOverlay
+      initialInvitee={name}
         baseMessage="You are formally invited"
         delay={7000}
         fadeMs={2000}
