@@ -1,0 +1,34 @@
+.divider {
+  width: 100%;
+  height: 32px;
+
+  /* Gold gradient applied at the same angle as the stripes */
+  background: linear-gradient(
+    45deg,
+    #b29043,
+    #f1c27d,
+    #b29043,
+    #f1c27d,
+    #b29043
+  );
+
+  /* Solid thin diagonal stripes mask */
+  -webkit-mask-image: repeating-linear-gradient(
+    -45deg,
+    #000 0,
+    #000 5px,
+    transparent 4px,
+    transparent 11px
+  );
+  -webkit-mask-repeat: repeat;
+
+  /* Safari + modern browser compatibility */
+  mask-image: repeating-linear-gradient(
+    -45deg,
+    #000 0,
+    #000 5px,
+    transparent 4px,
+    transparent 11px
+  );
+  mask-repeat: repeat;
+}

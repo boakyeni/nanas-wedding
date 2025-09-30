@@ -17,6 +17,8 @@ const config = {
         parisienne: ["var(--font-parisienne)", "cursive"],
         tangerine: ["var(--font-tangerine)", "cursive"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
+        crimson: ["var(--font-crimson)", "sans-serif"],
+        mrs_saint_delafield: ["var(--font-mrs-saint-delafield)", "sans-serif"]
       },
     },
   },
