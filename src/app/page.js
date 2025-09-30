@@ -83,7 +83,7 @@ const pictures = [
         baseMessage="You are formally invited"
         delay={7000}
         fadeMs={2000}
-        showOnce="off"          // "local" for once-ever; "off" to always show; session default
+        showOnce="session"          // "local" for once-ever; "off" to always show; session default
         storageKey="weddingSplash:v1"
         nameParam="name"
       />
