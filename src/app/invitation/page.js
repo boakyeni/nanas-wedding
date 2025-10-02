@@ -29,7 +29,7 @@ const EnvelopeAnimation = () => {
 
     const [showBottomButton, setShowBottomButton] = useState(false);
     const [bottomButtonOpacity, setBottomButtonOpacity] = useState(0);
-    
+
 
     useEffect(() => {
         // Check if mobile on component mount
@@ -98,7 +98,7 @@ const EnvelopeAnimation = () => {
             setIsOpen(true);
             setMessageOpacity(0);
             setIsChangingMessage(true);
-            
+
             setTimeout(() => {
                 setIsCardPulled(true);
                 // Change instruction after card is pulled
@@ -127,16 +127,16 @@ const EnvelopeAnimation = () => {
             style={{ perspective: '1000px' }} // 3D transform perspective
             onClick={handleScreenClick}
         >
-            <ThreeBackground deviceOrientation={deviceOrientation} 
+            <ThreeBackground deviceOrientation={deviceOrientation}
                 motionEnabled={motionEnabled} />
 
             {/* Enable Motion Button */}
             {/* <EnableMotionButton onEnabled={setMotionEnabled} /> */}
 
             {!showIntroImage && instructionMessage && (
-                <div 
+                <div
                     className={`absolute top-10 left-1/2 transform -translate-x-1/2 ${isChangingMessage ? 'pointer-events-none' : ''}`}
-                    style={{ 
+                    style={{
                         opacity: messageOpacity,
                         transition: 'opacity 500ms ease-in-out',
                         zIndex: 10
@@ -149,35 +149,36 @@ const EnvelopeAnimation = () => {
             )}
 
             {showBottomButton && (
-                <Link 
-                    className={`absolute bottom-48 left-1/2 transform -translate-x-1/2 `}
-                    style={{ 
+                <div
+                    onClick={() => { window.location.href = '/' }}
+                    role="button"
+                    tabIndex={0}
+                    className="absolute bottom-48 left-1/2 transform -translate-x-1/2 cursor-pointer bg-stone-500 bg-opacity-90 text-white text-center font-montserrat text-sm px-6 py-3 rounded-3xl shadow-md border"
+                    style={{
                         opacity: bottomButtonOpacity,
                         transition: 'opacity 500ms ease-in-out',
                         zIndex: 10
                     }}
-                    href='rsvp'
                 >
-                    <div className=" bg-stone-500 bg-opacity-90 text-white font-montserrat text-sm px-6 py-3 rounded-3xl shadow-md border">
-                        Tap Here to RSVP
-                    </div>
-                </Link>
+                    Tap Here for Full Website
+                </div>
+
             )}
 
 
             {/* Intro Image Overlay */}
             {showIntroImage && (
-                <div 
+                <div
                     className="absolute inset-0 flex items-center justify-center z-50"
-                    style={{ 
+                    style={{
                         opacity: introImageOpacity,
                         transition: 'opacity 500ms ease-out',
-                        
+
                     }}
                 >
-                    <img 
-                        src="/Subject.png" 
-                        alt="Intro" 
+                    <img
+                        src="/Subject.png"
+                        alt="Intro"
                         className="max-w-full max-h-full object-contain"
                     />
                 </div>
@@ -187,7 +188,7 @@ const EnvelopeAnimation = () => {
 
             <div
                 className={`relative w-96 h-64 cursor-pointer ${!isOpen && 'hover:scale-105'} transition-transform duration-300 `}
-                
+
                 style={{ zIndex: 2, transform: envelopeTilt }}
             >
 
@@ -286,7 +287,7 @@ const EnvelopeAnimation = () => {
 
                 {/* Card */}
                 <div
-                    
+
                     className={`absolute left-1/2 w-80 h-48 shadow-xl transform -translate-x-1/2 transition-all duration-1000 cursor-pointer
             ${!isCardPulled ? 'translate-y-0' : (isCardCentered ? '-translate-y-32 max-h-[90vh] max-w-[90vw]' : '-translate-y-32')}`}
                     style={{

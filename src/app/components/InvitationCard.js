@@ -22,7 +22,7 @@ const InvitationCard = () => {
 
             {/* Top Ticket Section */}
             <div className="flex flex-col items-center bg-gradient-to-r w-full aspect-[8/2] from-white via-amber-50/50 to-white rounded-t-3xl border border-amber-200 border-b-0 pt-2 shadow-sm">
-                <p className='mx-auto font-tangerine font-thin text-[#860384] text-6xl pt-4'>Save the Date</p>
+                <p className='mx-auto font-tangerine font-thin text-[#860384] text-6xl pt-4'>Formal Invitation</p>
                 {/* <p className='mx-auto font-montserrat font-thin text-stone-500 text-lg'> <span className='font-tangerine text-stone-400 text-3xl pr-2'>for</span> ACCRA</p> */}
             </div>
 
@@ -82,7 +82,7 @@ const InvitationCard = () => {
                     
                     </div>
                     <div className="text-center text-stone-400 text-xs mb-2">
-                        FORMAL INVITATION TO FOLLOW
+                        SEE FULL WEBSITE TAP BELOW
                     </div>
 
                     {/* Barcode-like design - now using pre-generated values */}

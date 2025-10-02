@@ -4,6 +4,7 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function SplashOverlay({
+    initialInvitee = '',
     baseMessage = "You are formally invited",
     delay = 2000,
     fadeMs = 1000,
@@ -16,7 +17,8 @@ export default function SplashOverlay({
     const [visible, setVisible] = React.useState(false);
 
     // derive display message
-    const invitee = searchParams?.get(nameParam)?.trim();
+    const sp = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+    const invitee = (initialInvitee || sp?.get(nameParam) || "").trim();
     const heading = invitee ? `${baseMessage}, ${invitee}` : baseMessage;
 
     // storage backend

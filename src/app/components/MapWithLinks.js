@@ -62,7 +62,7 @@ export default function MapWithLinks({ lat, lng, label, zoom = 15 }) {
           rel="noopener noreferrer"
           className="flex-1 text-center py-3 px-6 rounded-lg font-semibold font-montserrat tracking-tighter shadow-lg transition transform hover:scale-105 purple-royal-gradient"
         >
-        <div className="flex flex-col">
+        <div className="flex flex-col text-white">
         <span>Open in Google</span> <span>Maps</span>
         </div>
         </a>
@@ -72,7 +72,7 @@ export default function MapWithLinks({ lat, lng, label, zoom = 15 }) {
           rel="noopener noreferrer"
           className="flex-1 text-center py-3 px-6 rounded-lg font-semibold shadow-lg transition transform hover:scale-105 purple-royal-gradient"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col text-white">
         Open in Apple <span>Maps</span>
         </div>
         </a>

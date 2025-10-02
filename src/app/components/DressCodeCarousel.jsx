@@ -17,7 +17,7 @@ const FALLBACK_ITEMS = [
     { id: "w-formal-3", gender: "women", occasion: "formal", title: "Party Dress", notes: "Floor length; metallic accents welcome.", colors: ["Gold"], image: "/salmonwomendress.png" },
     { id: "w-formal-4", gender: "women", occasion: "formal", title: "Mermaid", notes: "Off the shoulder mermaid", colors: ["Purple"], image: "/purplewomendress.png" },
     { id: "w-formal-5", gender: "women", occasion: "formal", title: "Harmony Gown", notes: "Harmony Gown", colors: ["Blue"], image: "/bluewomendress.png" },
-    { id: "w-formal-6", gender: "women", occasion: "formal", title: "Formal Dress", notes: "Formal Dress", colors: ["Blue"], image: "/purplewomendress2.png" },
+    { id: "w-formal-6", gender: "women", occasion: "formal", title: "Formal Dress", notes: "Formal Dress", colors: ["Purple"], image: "/purplewomendress2.png" },
 ];
 
 export default function DressCodeCarousel({ items = FALLBACK_ITEMS, id }) {

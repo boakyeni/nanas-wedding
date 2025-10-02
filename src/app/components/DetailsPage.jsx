@@ -11,7 +11,8 @@ export default function DetailsPage({
     address: "Airport Residential Area, Accra",
     dressCode: "Formal",
     reception: "Reception to follow",
-    notes: "Adults-only ceremony & reception, please.",
+    notes: "Adults-only ceremony & reception",
+    restriction: "Please reserve white, ivory, champagne, and off white for the bride"
   },
   actions = {
     rsvpUrl: "/rsvp",
@@ -35,7 +36,7 @@ export default function DetailsPage({
         <DetailBlock label="Where" lines={[details.venue]} />
         <DetailBlock label="Reception" lines={[details.reception]} />
         {details.notes && <DetailBlock label="Notes" lines={[details.notes]} />}
-        <DetailBlock label="Restrictions" lines={["We kindly request that guests avoid wearing white, ivory, champagne or beige to the wedding."]} />
+        <DetailBlock label="Attire" lines={[details.restriction]} />
       </div>
 
       {/* Actions */}

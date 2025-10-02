@@ -8,17 +8,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const FALLBACK_ITEMS = [
-    { id: 13, name: "Celine Hylton Dei", side: "bride", image: "/celine.jpg", role: 'Maid of Honor' },
-    { id: 5, name: "Benjamin Frempong", side: "groom", image: "groom4.jpg", role: "Best Man" },
     { id: 14, name: "Nanu Jalieba", side: "bride", image: "/nanu.jpg", role: 'Matron of Honor' },
+    { id: 5, name: "Benjamin Frempong", side: "groom", image: "groom4.jpg", role: "Best Man" },
+    { id: 13, name: "Celine Hylton Dei", side: "bride", image: "/celine.jpg", role: 'Maid of Honor' },
     { id: 2, name: "Nana K", side: "groom", image: "groom1.jpeg", singleLine: true },
     { id: 1, name: "Maggie Moreton", side: "bride", image: "/maggie.jpg" },
     { id: 4, name: "Ussifu Obama", side: "groom", image: "groom3.jpg" },
-    { id: 12, name: "Yuliya Meskela", side: "bride", image: "/yuliya.jpg" },
-    { id: 3, name: "Isaac Kumi", side: "groom", image: "groom2.jpg" },
+    { id: 12, name: "Yuliya Meskela", side: "bride", image: "/yuliya2.jpg" },
+    { id: 3, name: "Kumi Isaac", side: "groom", image: "isaac.jpg" },
     { id: 15, name: "Chloe Hoses", side: "bride", image: "/chloe.jpeg" },
     { id: 7, name: "Andrew Zato", side: "groom", image: "groom6.jpg" },
-    { id: 16, name: "Naomi Smith-George", side: "bride", image: "/naomi2.jpg" },
+    { id: 16, name: "Naomi Smith-George", side: "bride", image: "/naomi.jpeg" },
     { id: 8, name: "Surag", side: "groom", image: "groom7.jpg", singleLine: true },
     { id: 17, name: "Janet Boachie", side: "bride", image: "/janet2.jpeg" },
     { id: 9, name: "Maxwell Takyi", side: "groom", image: "groom8.jpg" },

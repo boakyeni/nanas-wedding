@@ -15,7 +15,7 @@ export default function PassportInvite({
         code: "GHANA",
         passportNo: "1234XY",
         date: "Jan. 3th 2026",
-        time: "5 PM",
+        time: "1 PM",
         destination: "Accra, Ghana",
     },
     titleTop = "PASSPORT TO WEDDING",
