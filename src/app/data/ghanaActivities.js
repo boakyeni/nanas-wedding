@@ -87,6 +87,19 @@ export const ghanaActivities = [
                 ]
             },
             {
+                id: "starbitesx",
+                name: "Starbites X",
+                area: "Cantoments",
+                image: "/starbitesx.jpeg",
+                blurb: "",
+                tags: ["Western", "Ghanaian", "Bar"],
+                costs: [{ label: "Avg. meal", amount: "$$" }],
+                bestTime: "Anytime",
+                phone: "",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/starbitesx/?hl=en" }]
+            },
+
+            {
                 id: "honeysuckle",
                 name: "The Honeysuckle Pub & Restaurant",
                 area: "Multiple Locations",
@@ -277,7 +290,33 @@ export const ghanaActivities = [
                 costs: [{ label: "Avg. meal", amount: "$" }],
                 bestTime: "",
                 links: [{ label: "Instagram", url: "https://www.instagram.com/aburibotanicalgarden/?hl=en" }]
-            }
+            },
+            {
+                id: "cape-coast-castle",
+                name: "Cape Coast Castle",
+                subtitle: "Powerful history on Ghana’s coast",
+                image: "/Nana_Prempeh_Cape_Coast.jpg",
+                tags: ["History", "UNESCO"],
+                area: "Cape Coast (Central Region)",
+                coordinates: { lat: 5.1053, lng: -1.2466, label: "Cape Coast Castle", googleUrl: "https://maps.app.goo.gl/mZM8kxnFA5eoUa34A" },
+                blurb:
+                    "A moving tour through the dungeons and Door of No Return. Expect emotional context on the trans-Atlantic slave trade.",
+                costs: [
+                    { label: "Guided tour", amount: 80, per: "per adult (local rates vary)" },
+                    { label: "Camera fee", amount: 20 },
+                ],
+                transport: [
+                    { mode: "Hire Driver", advice: "Best for day-trip from Accra, ~3.5 hrs each way." },
+                    { mode: "Bus", advice: "STC bus to Cape Coast, then taxi to the castle." },
+                    { mode: "Taxi", advice: "From Cape Coast station to the castle, ₵20–₵40." },
+                ],
+                bestTime: "Morning tours (9–11am). Avoid peak heat 12–3pm.",
+                links: [
+                    { label: "Ghana Museums & Monuments", url: "https://www.ghanamuseums.org/cape-coast-castle.php" },
+                    { label: "Tripadvisor", url: "https://www.tripadvisor.com/Attraction_Review-g303866-d480603-Reviews-Cape_Coast_Castle-Cape_Coast_Central_Region.html" },
+                ],
+            },
+
         ]
     },
     {
@@ -304,43 +343,17 @@ export const ghanaActivities = [
                 ]
             },
             {
-                id: "noldor",
-                name: "Noldor Artist Residency",
-                area: "Osu, Accra",
-                image: "/noldor.jpg",
-                blurb: "Independent artist residency showcasing contemporary African art",
-                coordinates: { lat: 5.5621525524955615, lng: -0.18244283233148673, label: "Kwame Nkrumah National Park", googleUrl: "https://maps.app.goo.gl/s2f76YwM8vve5Jpw9" },
+                id: "vlisco",
+                name: "Vlisco",
+                area: "Accra Mall",
+                image: "/vlisco.jpg",
+                blurb: "Vlisco is known for its unique printed fabrics",
+                coordinates: { lat: 5.5621525524955615, lng: -0.18244283233148673, label: "Vlisco", googleUrl: "https://maps.app.goo.gl/WEDXbi6AYGYC1dTs5" },
                 tags: ["Material", "Fixed Price"],
-                costs: [{ label: "Donation Based Entry", amount: 5 }, { label: "Art Pieces", amount: "$$$$" }],
+                costs: [{ label: "Avg. Price", amount: "$$$", per: "yard" }],
                 bestTime: "Call in advance",
-                phone: "+233506732351",
-                links: [{ label: "Instagram", url: "https://www.instagram.com/thenoldorresidency?igsh=NTc4MTIwNjQ2YQ==" }, { label: "Website", url: "https://noldorresidency.com/" }]
-            },
-            {
-                id: "independence-square",
-                name: "Independence Square",
-                area: "Osu, Accra",
-                image: "/blackstar.webp",
-                blurb: "Al fresco Dining",
-                coordinates: { lat: 5.617, lng: -0.184, label: "Black Star", googleUrl: "https://maps.app.goo.gl/82iWVFDC32chACUX6" },
-                tags: ["Landmark"],
-                costs: [],
-                phone: "",
-                bestTime: "",
-                links: []
-            },
-            {
-                id: "aburi",
-                name: "Aburi Botanical Gardens",
-                area: "Aburi",
-                image: "/aburi-gardens.webp",
-                phone: "+233 20 900 6449",
-                blurb: "",
-                coordinates: { lat: 5.617, lng: -0.184, label: "aburi", googleUrl: "https://maps.app.goo.gl/Gaj3vuiRR92EAuiz9" },
-                tags: ["Natural History"],
-                costs: [{ label: "Avg. meal", amount: "$$$" }],
-                bestTime: "",
-                links: [{ label: "Instagram", url: "https://www.instagram.com/aburibotanicalgarden/?hl=en" }]
+                phone: "+233302900437",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/vlisco?igsh=NTc4MTIwNjQ2YQ==" }, { label: "Website", url: "https://vlisco.com/" }]
             }
         ]
     },
@@ -400,7 +413,7 @@ export const ghanaActivities = [
                 tags: ["Clubbing"],
                 costs: [{ label: "Avg. Price", amount: "$$$", per: "person" }],
                 bestTime: "Late Night",
-                links: [{label: "Instagram", url: "https://www.instagram.com/garage_ghana/?hl=en"}]
+                links: [{ label: "Instagram", url: "https://www.instagram.com/garage_ghana/?hl=en" }]
             },
             {
                 id: "mad",
@@ -412,7 +425,7 @@ export const ghanaActivities = [
                 tags: ["Clubbing"],
                 costs: [],
                 bestTime: "Late Night",
-                links: [{label: "Instagram", url: "https://www.instagram.com/madclubghana/?hl=en"}]
+                links: [{ label: "Instagram", url: "https://www.instagram.com/madclubghana/?hl=en" }]
             },
             {
                 id: "twist",
@@ -424,56 +437,278 @@ export const ghanaActivities = [
                 tags: ["Clubbing"],
                 costs: [],
                 bestTime: "Late Night",
-                links: [{label: "Instagram", url: "https://www.instagram.com/twistgh/?hl=en"}]
+                links: [{ label: "Instagram", url: "https://www.instagram.com/twistgh/?hl=en" }]
             },
+            {
+                id: "labadi-beach",
+                name: "Labadi Beach",
+                subtitle: "Live music, horses & sunset",
+                image: "/labadi_beach.jpeg",
+                tags: ["Beach"],
+                area: "La, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Labadi Beach", googleUrl: "https://maps.app.goo.gl/U7CHHRYhUPaxJVMb6" },
+                blurb:
+                    "Accra’s most famous beach. Weekends bring music and dancing; weekday sunsets are calmer. Expect entry fee and vendors.",
+                costs: [
+                    { label: "Entry", amount: 10, per: "per person" },
+                    { label: "Chair & umbrella", amount: 40 },
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Weekdays before sunset for chill; weekends for energy.",
+                links: [{ label: "Google Maps", url: "https://maps.google.com/?q=Labadi%20Beach" }],
+            },
+            {
+                id: "sandbox",
+                name: "Sandbox Beach Club",
+                subtitle: "",
+                image: "/sandbox.webp",
+                tags: ["Beach", "Lounge"],
+                area: "La, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Sandbox Beach Club", googleUrl: "https://maps.app.goo.gl/mK88vrwcVCW2wVCS7" },
+                blurb:
+                    "Beach lounge. Reservation required. Dress code enforced.",
+                costs: [
+                    { label: "Reservation", amount: 250, per: "per person" },
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Before sunset for the beach. They close access to the beach after sunset.",
+                phone: "+233277818105",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/sandboxbc?igsh=NTc4MTIwNjQ2YQ==" }],
+            },
+            {
+                id: "purplepub",
+                name: "Purple Pub",
+                image: "/purplepub.jpeg",
+                tags: ["Local"],
+                area: "La, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Purple Pub", googleUrl: "https://maps.app.goo.gl/73FwkBh2uf1g2jdi7" },
+                blurb:
+                    "Local Bar. Get their five fingers drink",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/purple_pub_osu?igsh=NTc4MTIwNjQ2YQ==" }],
+            },
+            {
+                id: "frontback",
+                name: "Front/Back",
+                image: "/frontback.webp",
+                tags: ["Bar"],
+                area: "La, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Front Back", googleUrl: "https://maps.app.goo.gl/DGznjZQHarabD1Cj8" },
+                blurb:
+                    "",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/frontbackaccra/?hl=en=" }, { label: "Website", url: "https://www.frontbackaccra.com/" }],
+            },
+            {
+                id: "exhale",
+                name: "Exhale Lounge",
+                image: "/exhale.webp",
+                tags: ["Lounge"],
+                area: "East Legon, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Exhale", googleUrl: "https://maps.app.goo.gl/Dd4DnD2YkPjcmWLx9" },
+                blurb:
+                    "",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/exhalegh/?hl=en" }, { label: "Website", url: "https://www.exhaleloungeghana.com/" }],
+            },
+            {
+                id: "ace",
+                name: "Ace Nightclub",
+                image: "/ace.webp",
+                tags: ["Clubbing"],
+                area: "Labone, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Ace", googleUrl: "https://maps.app.goo.gl/DJ6HK4Q3cCtCxUv66" },
+                blurb:
+                    "",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/acenightclubgh/?hl=en" }],
+            },
+            {
+                id: "republic",
+                name: "Republic Bar & Grill",
+                image: "/republic.jpeg",
+                tags: ["Local"],
+                area: "Osu, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "Ace", googleUrl: "https://maps.app.goo.gl/wVUYLe9fQURaD7vw6" },
+                blurb:
+                    "",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/republicbarghana/?hl=en" }],
+            },
+                        {
+                id: "barx",
+                name: "Bar X",
+                image: "/barx.jpg",
+                tags: ["Food & Drink"],
+                area: "Cantoments, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "X", },
+                blurb:
+                    "Call in advance",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+            },
+            {
+                id: "moodbar",
+                name: "Mood Bar",
+                image: "/moodbar.jpg",
+                tags: ["Clubbing"],
+                area: "Osu, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "X", googleUrl: "https://maps.app.goo.gl/EUrAFtMkhj73rEKB9" },
+                blurb:
+                    "Call in advance",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                phone: "+233599752007",
+            },
+            {
+                id: "pera",
+                name: "Pera Lounge",
+                image: "/pera.webp",
+                tags: ["Lounge"],
+                area: "East Legon, Accra",
+                coordinates: { lat: 5.5606, lng: -0.1358, label: "X", googleUrl: "https://maps.app.goo.gl/VRJ2k9HVVeHHzA8C9" },
+                blurb:
+                    "Call in advance",
+                costs: [
+                    {},
+                ],
+                transport: [
+                    { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+                    { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+                    { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+                ],
+                bestTime: "Late Night",
+                phone: "+233201137130",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/peraloungegh?igsh=NTc4MTIwNjQ2YQ==" }],
+            },
+            {
+                id: "skybar",
+                name: "Sky Bar 25 Restaurant and Bar",
+                area: "Spintex, Accra",
+                image: "/skybar-accra-two.jpg",
+                blurb: "Dining on the highest rooftop in Accra",
+                coordinates: { lat: 5.5621525524955615, lng: -0.18244283233148673, label: "Skybar", googleUrl: "https://maps.app.goo.gl/4iFo1kJocbCnmjx9A" },
+                tags: ["Rooftop"],
+                costs: [{ label: "Avg. meal", amount: "$$$" }],
+                bestTime: "Call in advance",
+                links: [
+                ]
+            },
+            {
+                id: "induldge",
+                name: "Indulge",
+                area: "Cantoments, Accra",
+                image: "/indulge.webp",
+                blurb: "",
+                coordinates: { lat: 5.5621525524955615, lng: -0.18244283233148673, label: "indulgex", googleUrl: "https://maps.app.goo.gl/fPfdS73dfBrScFwr5" },
+                tags: ["Rooftop"],
+                costs: [{ label: "Avg. meal", amount: "$$$" }],
+                bestTime: "Call in advance",
+                phone: "+233599707171",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/indulge_accra?igsh=NTc4MTIwNjQ2YQ==" }
+                ]
+            },
+            {
+                id: "enigma",
+                name: "Enigma Sky Lounge",
+                area: "Accra",
+                image: "/enigma.jpg",
+                blurb: "",
+                coordinates: { lat: 5.5621525524955615, lng: -0.18244283233148673, label: "indulgex", googleUrl: "https://maps.app.goo.gl/pZhBAmL6SpRd4TwN6" },
+                tags: ["Rooftop"],
+                costs: [{ label: "Avg. meal", amount: "$$$" }],
+                bestTime: "Call in advance",
+                phone: "+233536806389",
+                links: [{ label: "Instagram", url: "https://www.instagram.com/enigmaskylounge_gh/?hl=en" }
+                ]
+            },
+
 
         ]
     },
-        {
-        slug: "cape-coast-castle",
-        title: "Cape Coast Castle",
-        subtitle: "Powerful history on Ghana’s coast",
-        image: "/Nana_Prempeh_Cape_Coast.jpg",
-        tags: ["History", "UNESCO"],
-        area: "Cape Coast (Central Region)",
-        coordinates: { lat: 5.1053, lng: -1.2466, label: "Cape Coast Castle" },
-        blurb:
-            "A moving tour through the dungeons and Door of No Return. Expect a knowledgeable guide and emotional context on the trans-Atlantic slave trade.",
-        costs: [
-            { label: "Guided tour", amount: 80, per: "per adult (local rates vary)" },
-            { label: "Camera fee", amount: 20 },
-        ],
-        transport: [
-            { mode: "Hire Driver", advice: "Best for day-trip from Accra, ~3.5 hrs each way." },
-            { mode: "Bus", advice: "STC bus to Cape Coast, then taxi to the castle." },
-            { mode: "Taxi", advice: "From Cape Coast station to the castle, ₵20–₵40." },
-        ],
-        bestTime: "Morning tours (9–11am). Avoid peak heat 12–3pm.",
-        links: [
-            { label: "Ghana Museums & Monuments", url: "https://www.ghanamuseums.org/cape-coast-castle.php" },
-            { label: "Tripadvisor", url: "https://www.tripadvisor.com/Attraction_Review-g303866-d480603-Reviews-Cape_Coast_Castle-Cape_Coast_Central_Region.html" },
-        ],
-    },
-    {
-        slug: "labadi-beach",
-        title: "Labadi Beach",
-        subtitle: "Live music, horses & sunset",
-        image: "/labadi_beach.jpeg",
-        tags: ["Beach", "Nightlife"],
-        area: "La, Accra",
-        coordinates: { lat: 5.5606, lng: -0.1358, label: "Labadi Beach" },
-        blurb:
-            "Accra’s most famous beach. Weekends bring music and dancing; weekday sunsets are calmer. Expect entry fee and vendors.",
-        costs: [
-            { label: "Entry", amount: 50, per: "per person" },
-            { label: "Chair & umbrella", amount: 40 },
-        ],
-        transport: [
-            { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
-            { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
-            { mode: "Walking", advice: "Not recommended at night; use a ride service." },
-        ],
-        bestTime: "Weekdays before sunset for chill; weekends for energy.",
-        links: [{ label: "Google Maps", url: "https://maps.google.com/?q=Labadi%20Beach" }],
-    }
+
+    // {
+    //     slug: "labadi-beach",
+    //     title: "Labadi Beach",
+    //     subtitle: "Live music, horses & sunset",
+    //     image: "/labadi_beach.jpeg",
+    //     tags: ["Beach", "Nightlife"],
+    //     area: "La, Accra",
+    //     coordinates: { lat: 5.5606, lng: -0.1358, label: "Labadi Beach" },
+    //     blurb:
+    //         "Accra’s most famous beach. Weekends bring music and dancing; weekday sunsets are calmer. Expect entry fee and vendors.",
+    //     costs: [
+    //         { label: "Entry", amount: 50, per: "per person" },
+    //         { label: "Chair & umbrella", amount: 40 },
+    //     ],
+    //     transport: [
+    //         { mode: "Uber/Bolt", advice: "₵25–₵60 from Osu; confirm price before ride." },
+    //         { mode: "Taxi", advice: "Agree fare upfront; carry small bills." },
+    //         { mode: "Walking", advice: "Not recommended at night; use a ride service." },
+    //     ],
+    //     bestTime: "Weekdays before sunset for chill; weekends for energy.",
+    //     links: [{ label: "Google Maps", url: "https://maps.google.com/?q=Labadi%20Beach" }],
+    // }
 ]

@@ -19,6 +19,7 @@ export default function PassportCover({
       <div
         className={`relative mx-auto aspect-[3/5] max-w-sm sm:max-w-md md:max-w-lg rounded-[28px] overflow-hidden shadow-xl print:shadow-none ${bgClass} passport-cover`}
       >
+        {/* <Image src={"/adinkra.svg"} className="object-cover object-[60%_center] pb-2 opacity-10" fill alt="background image on passport of adinkra symbols pattern"/> */}
         {/* Soft vignette + linen texture hint */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.22)_100%)]" />
@@ -43,8 +44,9 @@ export default function PassportCover({
           {/* Center logo area */}
           <div className="flex-1 w-full flex items-center justify-center">
             {logo ? (
-              <div className="w-full flex items-center justify-center">
-                <Image src={logo} alt="N and W Wedding Logo" width={1000} height={1000}/>
+              <div className="w-full flex flex-col items-center justify-center relative">
+                <Image src={logo} className=" scale-125" alt="N and W Wedding Logo" width={1000} height={1000}/>
+                
               </div>
             ) : (
               <LogoPlaceholder goldClass={gold} />
