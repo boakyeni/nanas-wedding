@@ -72,8 +72,63 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
+    <html lang="en" suppressHydrationWarning>
       <head>
+<Script id="strip-ios-chrome-attrs" strategy="beforeInteractive">
+          {`
+            (function () {
+              try {
+                const isBad = (name) =>
+                  name && (name.startsWith('__gchrome_') || name === 'g_reader');
+
+                const stripAttrs = (el) => {
+                  if (!el || !el.attributes) return;
+                  for (const a of Array.from(el.attributes)) {
+                    if (isBad(a.name)) el.removeAttribute(a.name);
+                  }
+                };
+
+                // 1) Scrub anything already in the DOM (html + subtree)
+                const scrubAll = () => {
+                  stripAttrs(document.documentElement);
+                  const all = document.getElementsByTagName('*');
+                  for (let i = 0; i < all.length; i++) stripAttrs(all[i]);
+                };
+                scrubAll();
+
+                // 2) Observe new/changed attributes until hydration finishes
+                const mo = new MutationObserver((mutations) => {
+                  for (const m of mutations) {
+                    if (m.type === 'attributes' && isBad(m.attributeName)) {
+                      m.target.removeAttribute(m.attributeName);
+                    } else if (m.type === 'childList') {
+                      m.addedNodes.forEach((n) => {
+                        if (n.nodeType === 1) {
+                          stripAttrs(n);
+                          // also strip its subtree
+                          const els = n.getElementsByTagName?.('*');
+                          if (els) for (let i = 0; i < els.length; i++) stripAttrs(els[i]);
+                        }
+                      });
+                    }
+                  }
+                });
+
+                mo.observe(document.documentElement, {
+                  subtree: true,
+                  attributes: true,
+                  childList: true
+                });
+
+                // Optional: stop observing a bit after load to save work
+                window.addEventListener('load', () => {
+                  // give React a moment to hydrate
+                  setTimeout(() => mo.disconnect(), 3000);
+                });
+              } catch {}
+            })();
+          `}
+        </Script>
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
           strategy="beforeInteractive"
@@ -101,6 +156,7 @@ function setVh(){
           paddingTop: 'env(safe-area-inset-top)',
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
+        suppressHydrationWarning
       >
         <SizeObserver>
           <ScrollObserver>

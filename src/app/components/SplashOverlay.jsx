@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useSearchParams } from "next/navigation";
+import {useState, useMemo, useEffect} from "react";
 
 export default function SplashOverlay({
     initialInvitee = '',
@@ -12,17 +11,17 @@ export default function SplashOverlay({
     storageKey = "hasSeenSplash:v1", // same key, no breaking change
     nameParam = "name",
 }) {
-    const searchParams = useSearchParams();
-    const [render, setRender] = React.useState(false);
-    const [visible, setVisible] = React.useState(false);
+    const [render, setRender] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const [cameFromCheckin, setCameFromCheckin] = useState(false);
 
     // derive display message
-    const sp = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
-    const invitee = (initialInvitee || sp?.get(nameParam) || "").trim();
+    const invitee = (initialInvitee).trim();
+    if (!invitee) return null;
     const heading = invitee ? `${baseMessage}, ${invitee}` : baseMessage;
 
     // storage backend
-    const store = React.useMemo(() => {
+    const store = useMemo(() => {
         if (showOnce === "local")
             return typeof window !== "undefined" ? window.localStorage : null;
         if (showOnce === "session")
@@ -30,8 +29,11 @@ export default function SplashOverlay({
         return null;
     }, [showOnce]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         let t1, t2;
+        const last = sessionStorage.getItem('lastRoute');
+    setCameFromCheckin(last === '/checkin');
+    sessionStorage.removeItem('lastRoute');
         const alreadySeen = (() => {
             try {
                 return store?.getItem(storageKey) === "1";
@@ -39,7 +41,7 @@ export default function SplashOverlay({
                 return false;
             }
         })();
-        if (alreadySeen) return;
+        if (alreadySeen && !cameFromCheckin) return;
 
         // lock scroll
         if (typeof document !== "undefined") {

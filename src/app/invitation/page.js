@@ -150,7 +150,7 @@ const EnvelopeAnimation = () => {
 
             {showBottomButton && (
                 <div
-                    onClick={() => { window.location.href = '/' }}
+                    onClick={() => { window.location.href = '/checkin' }}
                     role="button"
                     tabIndex={0}
                     className="absolute bottom-48 left-1/2 transform -translate-x-1/2 cursor-pointer bg-stone-500 bg-opacity-90 text-white text-center font-montserrat text-sm px-6 py-3 rounded-3xl shadow-md border"

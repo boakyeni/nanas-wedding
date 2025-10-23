@@ -1,7 +1,8 @@
 // components/BridalParty.jsx
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import NextImage from 'next/image'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Keyboard } from "swiper/modules";
 import "swiper/css";
@@ -9,25 +10,25 @@ import "swiper/css/pagination";
 
 const FALLBACK_ITEMS = [
     { id: 14, name: "Nanu Jalieba", side: "bride", image: "/nanu.jpg", role: 'Matron of Honor' },
-    { id: 5, name: "Benjamin Frempong", side: "groom", image: "groom4.jpg", role: "Best Man" },
+    { id: 5, name: "Benjamin Frempong", side: "groom", image: "/groom4.jpg", role: "Best Man" },
     { id: 13, name: "Celine Hylton Dei", side: "bride", image: "/celine.jpg", role: 'Maid of Honor' },
-    { id: 2, name: "Nana K", side: "groom", image: "groom1.jpeg", singleLine: true },
+    { id: 2, name: "Nana K", side: "groom", image: "/groom1.jpeg", singleLine: true },
     { id: 1, name: "Maggie Moreton", side: "bride", image: "/maggie.jpg" },
-    { id: 4, name: "Ussifu Obama", side: "groom", image: "groom3.jpg" },
+    { id: 4, name: "Ussifu Obama", side: "groom", image: "/groom3.jpg" },
     { id: 12, name: "Yuliya Meskela", side: "bride", image: "/yuliya2.jpg" },
-    { id: 3, name: "Kumi Isaac", side: "groom", image: "isaac.jpg" },
+    { id: 3, name: "Kumi Isaac", side: "groom", image: "/isaac.jpg" },
     { id: 15, name: "Chloe Hoses", side: "bride", image: "/chloe.jpeg" },
-    { id: 7, name: "Andrew Zato", side: "groom", image: "groom6.jpg" },
+    { id: 7, name: "Andrew Zato", side: "groom", image: "/groom6.jpg" },
     { id: 16, name: "Naomi Smith-George", side: "bride", image: "/naomi.jpeg" },
-    { id: 8, name: "Surag", side: "groom", image: "groom7.jpg", singleLine: true },
+    { id: 8, name: "Surag", side: "groom", image: "/groom7.jpg", singleLine: true },
     { id: 17, name: "Janet Boachie", side: "bride", image: "/janet2.jpeg" },
-    { id: 9, name: "Maxwell Takyi", side: "groom", image: "groom8.jpg" },
+    { id: 9, name: "Maxwell Takyi", side: "groom", image: "/groom8.jpg" },
     { id: 18, name: "Christa Boachie", side: "bride", image: "/christa.jpg" },
-    { id: 10, name: "Obeng Walker", side: "groom", image: "groom9.jpg" },
+    { id: 10, name: "Obeng Walker", side: "groom", image: "/groom9.jpg" },
     { id: 19, name: "Lovia Ampofo", side: "bride", image: "/lovia3.jpg" },
-    { id: 6, name: "Randy Marfo", side: "groom", image: "groom5.jpg" },
+    { id: 6, name: "Randy Marfo", side: "groom", image: "/groom5.jpg" },
     { id: 20, name: "Effie Baidoo", side: "bride", image: "/effie.jpeg" },
-    { id: 11, name: "Emmanuel Fynn", side: "groom", image: "groom10.jpg" },
+    { id: 11, name: "Emmanuel Fynn", side: "groom", image: "/groom10.jpg" },
 ];
 
 export default function BridalParty({ items = FALLBACK_ITEMS, id }) {
@@ -95,10 +96,13 @@ export default function BridalParty({ items = FALLBACK_ITEMS, id }) {
 /* UI bits */
 
 function PartyCard({ person }) {
+    const [loaded, setLoaded] = useState(false);
     const parts = person.name.trim().split(" ");
     const first = parts[0];                // first word only
     const last = parts.slice(1).join(" "); // everything else
-
+    useEffect(() => {
+  setLoaded(false);
+}, [person.image]);
     const getBadgeClasses = () => {
         if (person.side === "bride" && person.role) {
             return "bg-gradient-to-r from-fuchsia-500 to-purple-600";
@@ -131,11 +135,14 @@ function PartyCard({ person }) {
         <div className="relative w-full max-w-sm mx-auto rounded-3xl overflow-hidden bg-white transition-all duration-500 ease-out group flex flex-col">
             {/* Image */}
             <div className="aspect-[3/4] w-full overflow-hidden relative">
-                <img
+                <NextImage
                     src={person.image}
                     alt={person.name}
+                    placeholder="blur"
+                    blurDataURL="/blur.png"
+                    priority
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
+                    fill
                     decoding="async"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none" />

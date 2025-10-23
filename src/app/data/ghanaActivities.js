@@ -396,7 +396,7 @@ export const ghanaActivities = [
     {
         slug: "nightlife",
         title: "NightLife",
-        subtitle: "Where to buy",
+        subtitle: "Where to party",
         image: "/nightlife.jpg",
         tags: ["Nightlife"],
         area: "Accra",

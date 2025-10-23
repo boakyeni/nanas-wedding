@@ -1,6 +1,5 @@
 // app/page.js
 'use client';
-import React from 'react';
 import dynamic from 'next/dynamic';
 import { Plane, Heart } from 'lucide-react';
 import Countdown from './components/Countdown';
@@ -20,16 +19,23 @@ import DressCodeCarousel from './components/DressCodeCarousel';
 import SplashOverlay from './components/SplashOverlay';
 import BridalParty from './components/BridalParty';
 import RegistrySection from './components/RegistrySection';
+import { motion } from 'framer-motion';
 
 // const Turn = dynamic(() => import('./components/Turn'), {
 //   ssr: false
 // });
+function getCookie(name) {
+  if (typeof document === 'undefined') return null;
+  const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '=([^;]*)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
 const WeddingsMap = dynamic(() => import('./components/WeddingsMap'), { ssr: false })
 const gradientGoldHover =
   'text-transparent bg-clip-text bg-white hover:bg-[linear-gradient(to_bottom,#b29043,#f1c27d,#b29043,#f1c27d,#b29043)] transition';
 
 export default function Home({ searchParams }) {
-  const name = React.use(searchParams).name || "";
+  const cookieName = getCookie('rsvp_name') || '';
+  const name = cookieName;
   const slides = [
     { src: "/n_w.png", alt: "Arrival", caption: "We landed at dawn in Tulum." },
     { src: "/n_w.png", alt: "Beach",   caption: "Morning walks and quiet waves." },
@@ -87,6 +93,12 @@ const pictures = [
         storageKey="weddingSplash:v1"
         nameParam="name"
       />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1200 / 1000, delay: 1.5 }}
+        className='flex flex-col items-center'
+      >
         <PassportCover/>
         <ScrollHint />
         <PassportInvite/>
@@ -157,6 +169,7 @@ const pictures = [
           <Countdown />
           
         </div>
+        </motion.div>
         
         <Works/>
         <div className='flex flex-row justify-around bg-white'>
@@ -170,10 +183,10 @@ const pictures = [
               priority
             />
           </div>
+          <DiagonalDivider/>
+          
         
       </div>
-      
-      <DiagonalDivider/>
     </>
   );
 }

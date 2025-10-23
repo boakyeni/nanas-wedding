@@ -23,10 +23,10 @@ const Works = () => (
             <WorkRight progress={progress}>
               <Image
                 src="/IMG_1500.jpg"
-                layout="responsive"
                 width={840}
                 height={840}
                 alt="spotify logo"
+                style={{ width: '100%', height: 'auto' }}
               />
             </WorkRight>
           </WorkContainer>
@@ -45,10 +45,10 @@ const Works = () => (
             <WorkRight progress={progress}>
               <Image
                 src="/dubaiwall.jpg"
-                layout="responsive"
                 width={840}
                 height={840}
                 alt="open book svg"
+                style={{ width: '100%', height: 'auto' }}
               />
             </WorkRight>
           </WorkContainer>
@@ -68,10 +68,10 @@ const Works = () => (
               <WorkLink href="/commerce/store">
                 <Image
                   src="/IMG_9596.jpeg"
-                  layout="responsive"
                   width={840}
                   height={840}
                   alt="merch logo"
+                  style={{ width: '100%', height: 'auto' }}
                 />
               </WorkLink>
             </WorkRight>
@@ -92,10 +92,10 @@ const Works = () => (
               <WorkLink href="https://www.instagram.com/thedtlabookclub/">
                 <Image
                   src="/knocking.jpg"
-                  layout="responsive"
                   width={840}
                   height={840}
                   alt="instagram logo"
+                  style={{ width: '100%', height: 'auto' }}
                 />
               </WorkLink>
             </WorkRight>

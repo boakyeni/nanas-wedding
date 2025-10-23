@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html { -webkit-text-size-adjust: 100%; } 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -110,3 +112,26 @@ textarea {
   border-radius: 28px !important;
   overflow: hidden !important;
 }
+
+.bg-elegant-white{
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.45);
+}
+
+.shadow-soft{
+  box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+}
+
+/* optional: smoother focus style for inputs/buttons */
+:root {
+  --focus-gold: rgba(178,144,67,0.35);
+}
+:where(input,button,select,textarea):focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-gold);
+  border-color: #b29043 !important;
+}
+
+
