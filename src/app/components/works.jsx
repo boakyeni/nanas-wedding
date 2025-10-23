@@ -61,11 +61,12 @@ const Works = () => (
             <WorkLeft progress={progress}>
               <div>Our</div>
               <div className='text-4xl md:text-5xl font-semibold tracking-tight'>
-                <WorkLink href="/commerce/store">Second Trip</WorkLink>
+                <div className='text-4xl md:text-5xl font-semibold font-montserrat text-gradient-gold'>
+                Second Date
+              </div>
               </div>
             </WorkLeft>
             <WorkRight progress={progress}>
-              <WorkLink href="/commerce/store">
                 <Image
                   src="/IMG_9596.jpeg"
                   width={840}
@@ -73,7 +74,6 @@ const Works = () => (
                   alt="merch logo"
                   style={{ width: '100%', height: 'auto' }}
                 />
-              </WorkLink>
             </WorkRight>
           </WorkContainer>
         )}
@@ -84,12 +84,11 @@ const Works = () => (
           <WorkContainer>
             <WorkLeft progress={progress}>
               <div>Our</div>
-              <div className='text-4xl md:text-5xl font-semibold tracking-tight'>
+                <div className='text-4xl md:text-5xl font-semibold font-montserrat text-gradient-gold'>
                 Knocking
               </div>
             </WorkLeft>
             <WorkRight progress={progress}>
-              <WorkLink href="https://www.instagram.com/thedtlabookclub/">
                 <Image
                   src="/knocking.jpg"
                   width={840}
@@ -97,7 +96,6 @@ const Works = () => (
                   alt="instagram logo"
                   style={{ width: '100%', height: 'auto' }}
                 />
-              </WorkLink>
             </WorkRight>
           </WorkContainer>
         )}
