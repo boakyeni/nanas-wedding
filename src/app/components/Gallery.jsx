@@ -230,7 +230,14 @@ export default function Gallery({
           variants={{ hidden: {}, show: { transition: { staggerChildren: reduce ? 0 : 0.04 } } }}
         >
           {items.map((item, i) => (
-            <div key={item.src + i} className="block w-full align-top break-inside-avoid">
+            <div key={item.src + i} className="align-top inline-block w-full"      // inline-block plays nicer in columns
+  style={{
+    breakInside: 'avoid',
+    WebkitColumnBreakInside: 'avoid',
+    pageBreakInside: 'avoid',
+    overflowAnchor: 'none', // stop iOS from “helpfully” shifting the viewport
+    minHeight: 1,           // avoid transient 0px heights during paint
+  }}>
             <motion.div
               variants={{
                 hidden: { opacity: 0, filter: 'blur(4px)' },
