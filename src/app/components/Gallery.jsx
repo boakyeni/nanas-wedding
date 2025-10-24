@@ -230,12 +230,11 @@ export default function Gallery({
           variants={{ hidden: {}, show: { transition: { staggerChildren: reduce ? 0 : 0.04 } } }}
         >
           {items.map((item, i) => (
+            <div key={item.src + i} className="block w-full align-top break-inside-avoid">
             <motion.div
-              key={item.src + i}
-              className="inline-block w-full align-top break-inside-avoid"
               variants={{
-                hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
-                show:   { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.28, ease: 'easeOut' } },
+                hidden: { opacity: 0, filter: 'blur(4px)' },
+                show:   { opacity: 1, filter: 'blur(0px)', transition: { duration: 0.28, ease: 'easeOut' } },
               }}
             >
               <Card
@@ -245,6 +244,7 @@ export default function Gallery({
                 shadowClass={shadowClass}
               />
             </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>
