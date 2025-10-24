@@ -74,7 +74,7 @@ const InvitationCard = () => {
                     </div>
                     <div className='pt-2 w-[70%]'>
                         <div className="flex justify-between text-violet-950 italic text-sm font-montserrat ">
-                            <p>Destination:</p> <p>Accra, Ghana</p>
+                            <p>Destination:</p> <p className='flex flex-row'> <span className='mx-1'>The</span>Underbridge</p>
                         </div>
                         <div className="flex justify-between text-violet-950 mb-2 text-sm italic font-montserrat ">
                             <p>Date:</p><p>January 3, 2026</p>
