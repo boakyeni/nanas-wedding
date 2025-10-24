@@ -134,4 +134,10 @@ textarea {
   border-color: #b29043 !important;
 }
 
+.rotate-y-0 { transform: rotateY(0deg); }        /* not used directly but handy */
+.rotate-y-180 { transform: rotateY(180deg); }    /* not used directly but handy */
+/* ensure children render correctly during 3D flip */
+[backface-visibility\:hidden] { backface-visibility: hidden; }
+[transform\:rotateY\(180deg\)] { transform: rotateY(180deg); }
+[transform-style\:preserve-3d] { transform-style: preserve-3d; }
 

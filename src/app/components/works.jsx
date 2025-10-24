@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
 import { Tile, TileBackground, TileContent, TileWrapper } from './tile'
-import { WorkBackground, WorkContainer, WorkLeft, WorkRight, WorkLink } from './work'
+import { WorkBackground, WorkContainer, WorkLeft, WorkRight } from './work'
 import Image from 'next/image'
 
 const Works = () => (
-  <TileWrapper numOfPages={4}>
+  <TileWrapper numOfPages={5}>
     <TileBackground>
       <WorkBackground />
     </TileBackground>
@@ -95,6 +95,32 @@ const Works = () => (
                   height={840}
                   alt="instagram logo"
                   style={{ width: '100%', height: 'auto' }}
+                />
+            </WorkRight>
+          </WorkContainer>
+        )}
+      />
+      <Tile
+        page={4}
+        renderContent={({ progress }) => (
+          <WorkContainer>
+            <WorkLeft progress={progress}>
+              <div onClick={() => window.location.href='/gallery'}>
+              <div>Tap the Logo</div>
+                <div className='text-4xl md:text-5xl font-semibold font-montserrat text-gradient-gold pb-3'>
+                For the Gallery
+              </div>
+              </div>
+            </WorkLeft>
+            <WorkRight progress={progress}>
+                <Image
+                  src="/n_w.png"
+                  width={840}
+                  height={840}
+                  alt="Wedding crest"
+                  style={{ width: '100%', height: 'auto' }}
+                  className='cursor-pointer'
+                  onClick={() => window.location.href='/gallery'}
                 />
             </WorkRight>
           </WorkContainer>
