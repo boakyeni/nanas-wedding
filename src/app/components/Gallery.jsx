@@ -19,27 +19,48 @@ function Card({ item, onOpen, radiusClass, shadowClass }) {
       type="button"
       onClick={onOpen}
       className={cx(
-        'group relative block w-full text-left break-inside-avoid mb-3 sm:mb-4',
-        radiusClass, shadowClass,
-        'overflow-hidden bg-neutral-50 dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+        // removed break-inside-avoid from here (keep it on the column item wrapper)
+        'group relative block w-full text-left mb-3 sm:mb-4',
+        radiusClass,
+        shadowClass,
+        // stabilize tap behavior on mobile
+        'overflow-hidden bg-neutral-50 dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-indigo-500',
+        'touch-manipulation [-webkit-tap-highlight-color:transparent] [backface-visibility:hidden] [contain:paint]'
       )}
     >
-      <div className="relative w-full overflow-hidden">
-        <Image
-          src={item.src}
-          alt={item.alt}
-          width={w}
-          height={h}
-          /* MOBILE UNCHANGED; desktop still responsive */
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="w-full h-auto object-cover transition-transform duration-300 group-active:scale-[0.98] group-hover:scale-[1.02]"
-          priority={false}
-        />
+      {/* Keep the border/radius on THIS wrapper; do NOT scale this element */}
+      <div className={cx('relative w-full overflow-hidden', radiusClass)}>
+        {/* Inner wrapper is the one that scales */}
+        <div
+          className={cx(
+            'relative w-full h-full',
+            // smooth transforms on mobile GPUs
+            'transform-gpu will-change-transform',
+            // no hover scale on mobile; enable from sm: and up
+            'transition-transform duration-200',
+            'active:scale-[0.995] sm:group-active:scale-[0.99] sm:group-hover:scale-[1.02]'
+          )}
+          // prevent flicker during transform compositing
+          style={{ WebkitBackfaceVisibility: 'hidden' }}
+        >
+          <Image
+            src={item.src}
+            alt={item.alt}
+            width={w}
+            height={h}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            // block avoids baseline gaps that can look like border flicker
+            className="block w-full h-auto object-cover select-none"
+            priority={false}
+            draggable={false}
+          />
+        </div>
 
         {(item.title || item.description) && (
           <>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent" />
-            <div className="pointer-events-none absolute bottom-2 left-3 right-3 text-white/95 drop-shadow">
+            {/* Promote overlays to their own layer to avoid text flicker */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent transform-gpu" />
+            <div className="pointer-events-none absolute bottom-2 left-3 right-3 text-white/95 drop-shadow transform-gpu">
               {item.title && <div className="text-sm font-medium leading-tight line-clamp-1">{item.title}</div>}
               {item.description && <div className="text-[11px] opacity-90 line-clamp-1">Tap to open</div>}
             </div>
@@ -49,6 +70,7 @@ function Card({ item, onOpen, radiusClass, shadowClass }) {
     </button>
   );
 }
+
 
 function Lightbox({ items, index, onClose, onPrev, onNext }) {
   const reduce = useReducedMotion();
@@ -210,7 +232,7 @@ export default function Gallery({
           {items.map((item, i) => (
             <motion.div
               key={item.src + i}
-              className="inline-block w-full align-top"
+              className="inline-block w-full align-top break-inside-avoid"
               variants={{
                 hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
                 show:   { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.28, ease: 'easeOut' } },
