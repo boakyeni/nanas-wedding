@@ -1,11 +1,11 @@
 import { passJson } from '../../_lib/proxy';
 
-export async function PATCH(request, context) {
-  const { params } = await context;
-  return passJson(request, `/api/guests/${params.id}`, 'PATCH');
+export async function PATCH(request, {params}) {
+    const { id } = await params;
+  return passJson(request, `/api/guests/${id}`, 'PATCH');
 }
 
-export async function DELETE(request, context) {
-  const { params } = await context;
-  return passJson(request, `/api/guests/${params.id}`, 'DELETE');
+export async function DELETE(request, {params}) {
+    const { id } = await params;
+  return passJson(request, `/api/guests/${id}`, 'DELETE');
 }
