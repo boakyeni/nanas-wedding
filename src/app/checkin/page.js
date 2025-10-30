@@ -381,7 +381,7 @@ export default function CheckinPage() {
                                                 className="w-full rounded-2xl border border-[#e9e1cf] bg-white/80 shadow-soft p-4">
                                                 <div className="font-semibold text-[#3d2e1e]">Add your contact details</div>
                                                 <p className="text-xs text-[#7e6c52] mt-1">
-                                                    Please provide <span className="font-semibold">email or phone</span>.
+                                                    Please provide <span className="font-semibold">email or WhatsApp phone #</span>.
                                                 </p>
 
                                                 <div className="mt-3 border border-[#eee6d6] rounded-xl p-3">
