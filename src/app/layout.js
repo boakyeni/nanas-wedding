@@ -48,23 +48,23 @@ const crimson = Crimson_Text({
 export const metadataBase = new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000');
 
 export const metadata = {
-  title: "Nimako & Saliu",
+  title: "Nimako & Bandau",
   description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
   openGraph: {
-    title: "Nimako & Saliu's Wedding",
+    title: "Nimako & Bandau's Wedding",
     description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
     images: [
       {
         url: "/n_w.png",
         width: 1500,
         height: 1500,
-        alt: "Nimako & Saliu Wedding"
+        alt: "Nimako & Bandau Wedding"
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nimako & Saliu's Wedding",
+    title: "Nimako & Bandau's Wedding",
     description: "Join us to celebrate the wedding of Nana Serwaa and Abdul Wahab.",
     images: ["/n_w.png"]
   }

@@ -32,7 +32,7 @@ const DigitalBoardingPass = () => {
             
             <div className="text-right">
               <div className="text-md font-parisienne">Wahab</div>
-              <div className="text-4xl font-parisienne">Saliu</div>
+              <div className="text-4xl font-parisienne">Bandau</div>
             </div>
           </div>
 
