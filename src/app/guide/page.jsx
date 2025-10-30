@@ -287,7 +287,7 @@ const hotels = [
         name: "La Villa Boutique",
         area: "Cantoments, Accra",
         tags: ["Pool", "3★"],
-        image: "lvb.jpeg",
+        image: "lvb1.jpeg",
         phone: "+233302730335",
         links: [{ label: "Website", url: "https://lavillaghana.com/" }],
         coords: { lat: 5.5607, lng: -0.1852, label: "Lancaster Accra", googleUrl: "https://maps.app.goo.gl/gh3CSTzRd4QAi1t46" },
