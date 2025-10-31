@@ -109,7 +109,7 @@ export default function RegistryPage({
         {/* Bottom divider (subtle, echoes countdown vibe) */}
         
         <div className="m-4 text-center text-xs tracking-[0.22em] uppercase text-neutral-500">
-          Packages can be shipped directly to the Nimako & Saliu residence
+          Packages can be shipped directly to the Nimako & Bandau residence
         </div>
         <div className="m-4 text-center text-xs tracking-[0.22em] uppercase text-neutral-500">
           Address provided in registry shopping cart
