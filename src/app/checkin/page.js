@@ -174,8 +174,8 @@ export default function CheckinPage() {
 
         return (
             upToDate.attending === true &&
-            !safeTrim(upToDate.email) &&
-            !safeTrim(upToDate.phone)
+            (!safeTrim(upToDate.email) ||
+            !safeTrim(upToDate.phone))
         );
     }, [selected, partyMembers]);
     const canContinue = everyoneAnswered && (!selectedNeedsContact || (isEmail(email) || isPhone(phone)));
