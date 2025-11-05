@@ -4,11 +4,6 @@ import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Fuse from 'fuse.js';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 
-export const metadata = {
-  title: "Check In – Nana & Wahab Wedding",
-  description: "Check In for the Wedding of Nana-Serwaa and Abdul Wahab",
-};
-
 const VENUE_NAME = "The Underbridge";
 const VENUE_ADDRESS = "2a Justice Azu Crabbe St, Accra, Ghana";
 const MAPS_URL = "https://maps.app.goo.gl/bPWBdS54viRJZrPg9";
