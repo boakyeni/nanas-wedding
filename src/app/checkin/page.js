@@ -284,7 +284,7 @@ export default function CheckinPage() {
                     </h1> */}
                     <div className="mb-5 inline-flex items-center gap-2 text-[clamp(1rem,4vw,2rem)] md:text-[clamp(1.5rem,3vw,3rem)] tracking-[0.18em] uppercase text-gradient-gold whitespace-nowrap">
                         <span className="h-[1px] w-6 bg-amber-200/40" />
-                        Nana & Wahab
+                        Nana-Serwaa & Abdul Wahab
                         <span className="h-[1px] w-6 bg-amber-200/40" />
                     </div>
 
