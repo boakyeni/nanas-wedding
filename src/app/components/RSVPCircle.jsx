@@ -11,8 +11,16 @@ export default function RSVPCircle({
   const armed = useRef(true); // prevent double-trigger
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (href === "/checkin") {
+      const timer = setTimeout(() => {
+        setVisible(true);
+        armed.current = false;
+      }, 7000);
+      return () => clearTimeout(timer);
+    }
     // If the page is already scrolled (back nav, deep link), show immediately
-    if (typeof window !== "undefined" && window.scrollY > threshold) {
+    if (window.scrollY > threshold) {
       setVisible(true);
       armed.current = false;
       return;

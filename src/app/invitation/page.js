@@ -134,7 +134,7 @@ const EnvelopeAnimation = () => {
 
             {!showIntroImage && instructionMessage && (
                 <div
-                    className={`absolute top-10 left-1/2 transform -translate-x-1/2 ${isChangingMessage ? 'pointer-events-none' : ''}`}
+                    className={`absolute bottom-48 left-1/2 transform -translate-x-1/2 ${isChangingMessage ? 'pointer-events-none' : ''}`}
                     style={{
                         opacity: messageOpacity,
                         transition: 'opacity 500ms ease-in-out',
