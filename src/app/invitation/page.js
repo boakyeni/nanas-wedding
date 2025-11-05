@@ -73,7 +73,7 @@ const EnvelopeAnimation = () => {
                 setTimeout(() => {
                     setBottomButtonOpacity(1);
                 }, 100);
-            }, 1000);
+            }, 500);
         }
     }, [isCardCentered]);
 
