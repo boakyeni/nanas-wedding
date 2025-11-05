@@ -375,7 +375,7 @@ export default function CheckinPage() {
                                             Confirm attendance for {selected.partyLabel || safeName(selected)}
                                         </div>
                                         <p className="text-xs text-[#7e6c52] mt-1">
-                                            Tap Yes/No for each person. Saves automatically. Deadline: <span className='font-bold'>December 5th</span>
+                                            Tap Yes/No for each person. Saves automatically. Deadline: <span className='font-bold'>December 1st</span>
                                         </p>
                                     </div>
 

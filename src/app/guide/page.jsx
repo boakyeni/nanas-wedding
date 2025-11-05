@@ -765,7 +765,7 @@ export default function WeddingGuidePage() {
                                 title: "What is the RSVP deadline?",
                                 content: (
                                     <p>
-                                        Please RSVP or select attending status by December 5th, so we can have an accurate headcount.
+                                        Please RSVP or select attending status by December 1st, so we can have an accurate headcount.
                                     </p>
                                 ),
                             },
@@ -774,7 +774,7 @@ export default function WeddingGuidePage() {
                                 title: "What if I didn't RSVP in time?",
                                 content: (
                                     <p>
-                                        If we do not receive your RSVP or attending status by December 5th, it will automativally be marked as a "No". 
+                                        If we do not receive your RSVP or attending status by December 1st, it will automativally be marked as a "No". 
                                         We will miss celebrating with you but it is imperative we provide our vendors with a final guest count within the
                                         time they have given us. Thank you for understanding.
                                     </p>

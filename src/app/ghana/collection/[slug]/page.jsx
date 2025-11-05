@@ -95,7 +95,7 @@ export default function CollectionPage() {
         return (
             <main className="mx-auto max-w-screen-lg p-6">
                 <h1 className="text-2xl font-semibold">Not found</h1>
-                <p className="mt-2 text-neutral-600">That collection doesn’t exist.</p>
+                <p className="mt-2 text-neutral-600">That collection doesn't exist.</p>
                 <a href="/#activities" className="mt-4 inline-block underline">
                     ← Back to list
                 </a>
