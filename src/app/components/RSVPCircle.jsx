@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export default function RSVPCircle({
   href = "/rsvp",
   threshold = 8,           // pixels scrolled before showing
+  text = "RSVP"
 }) {
   const [visible, setVisible] = useState(false);
   const armed = useRef(true); // prevent double-trigger
@@ -60,11 +61,11 @@ export default function RSVPCircle({
         flex h-16 w-16 items-center justify-center rounded-full
         gold-gradient
         text-white font-bold text-sm shadow-lg ring-2 ring-black/10
-        transition-all duration-700
+        transition-all duration-700 text-center leading-none
         ${visible ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"}
       `}
     >
-      RSVP
+      {text}
     </a>
   );
 }
