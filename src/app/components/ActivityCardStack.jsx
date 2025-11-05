@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper/modules";
 import "swiper/css";
@@ -14,7 +13,6 @@ import CardFilter from "./CardFilter";
  * Vibe coded
  */
 export default function ActivityCardStack({ items, id }) {
-    const router = useRouter();
 
     // Build a unique, sorted list of categories (tags)
     const categories = useMemo(() => {
@@ -127,9 +125,9 @@ export default function ActivityCardStack({ items, id }) {
                                         <button
                                             onClick={() => {
                                                 const isCollection = Array.isArray(a.locations) && a.locations.length > 0;
-                                                const href = isCollection ? `ghana/collection/${encodeURIComponent(a.slug)}`
+                                                const href = isCollection ? `/ghana/collection/${encodeURIComponent(a.slug)}`
                                                     : `/ghana/${encodeURIComponent(a.slug)}`;
-                                                router.push(href);
+                                                window.location.href = href
                                             }}
                                             className="py-2 px-4 rounded-xl text-white font-semibold tracking-tight shadow-lg bg-gradient-to-r from-[#b29043] via-[#f1c27d] to-[#b29043] hover:opacity-95 active:scale-95 transition"
                                         >

@@ -69,7 +69,15 @@ const ThankYou = () => {
         <p>Please save this information for your records:</p>
         <p className="mt-4 font-medium">Date: January 3, 2026</p>
         <p className="font-medium">Location: East Legon, Accra, Ghana</p>
-        <p className="mt-4">A reminder will be sent to your email address in autumn.</p>
+      </div>
+      <div className='mt-8'>
+        <a
+            href="/invitation"
+            className={`px-8 py-3 rounded-md border text-sm font-medium transition-all duration-300 shadow-sm text-white hover:border-purple-300`}
+            style={{background: "linear-gradient(to right, #b29043, #f1c27d, #b29043)"}}
+        >
+            Continue to the Website
+        </a>
       </div>
     </div>
   );

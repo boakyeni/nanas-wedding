@@ -4,7 +4,6 @@ import InvitationCard from '../components/InvitationCard';
 import ThreeBackground from '../components/ThreeBackground';
 import useDeviceOrientation from '../hooks/useDeviceOrientation';
 import EnableMotionButton from '../components/EnableMotionButton';
-import Link from 'next/link';
 
 
 const EnvelopeAnimation = () => {

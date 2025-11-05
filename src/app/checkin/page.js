@@ -4,9 +4,18 @@ import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Fuse from 'fuse.js';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 
+const VENUE_NAME = "The Underbridge";
+const VENUE_ADDRESS = "2a Justice Azu Crabbe St, Accra, Ghana";
+const MAPS_URL = "https://maps.app.goo.gl/bPWBdS54viRJZrPg9";
+const WEBSITE_URL = "https://nanaandwahabwedding.com/invitation";
+const GUIDE_URL = "https://nanaandwahabwedding.com/guide";
+const RSVP_LINK = "https://nanaandwahabwedding.com/checkin";
+
 const API = {
+    getGuest: (id) => `/api/guests/${id}`,
     guests: '/api/guests',
     patchGuest: (id) => `/api/guests/${id}`,
+    sendConfirmations: (id) => `/api/guests/${id}/send_confirmations`,
 };
 
 async function jsonFetch(url, init) {
@@ -192,6 +201,7 @@ export default function CheckinPage() {
     }
 
     const continueToSite = useCallback(async () => {
+        if (!selected?.id) return;
         const dn = selected ? safeName(selected) : '';
         if (selectedNeedsContact) {
             const eOK = email && isEmail(email);
@@ -201,20 +211,42 @@ export default function CheckinPage() {
                 alert('Please provide a valid email or phone.');
                 return;
             }
+        }
+        const body = {
+            send_email_if_needed: true,
+            send_whatsapp_if_needed: true,
+            email_payload: {
+                // guest_name is not required by your route since you use display_name,
+                // but harmless to include; backend will ignore/override if desired.
+                guest_name: dn,
+                venue_name: VENUE_NAME,
+                venue_address: VENUE_ADDRESS,
+                maps_url: MAPS_URL,
+                website_url: WEBSITE_URL,
+                guide_url: GUIDE_URL,
+                // reply_to, subject are optional; add if you use them.
+            },
+            whatsapp_payload: {
+                guest_name: dn,
+                // attending omitted -> server uses DB value
+                rsvp_link: RSVP_LINK,
+            },
+        };
+        const eVal = email?.trim();
+        const pVal = phone?.trim();
+        if (eVal && isEmail(eVal)) body.email = eVal;
+        if (pVal && isPhone(pVal)) body.phone = pVal;
 
-            try {
-                await jsonFetch(API.patchGuest(selected.id), {
-                    method: 'PATCH',
-                    body: JSON.stringify({
-                        email: eOK ? email.trim() : null,
-                        phone: pOK ? phone.trim() : null,
-                    }),
-                });
-                // no local state sync needed since you're redirecting
-            } catch (err) {
-                alert('Failed to save your contact info. Please try again.');
-                return;
-            }
+
+        try {
+            await jsonFetch(API.sendConfirmations(selected.id), {
+                method: 'POST',
+                body: JSON.stringify(body),
+            });
+            // no local state sync needed since you're redirecting
+        } catch (err) {
+            alert('Failed to save your contact info. Please try again.');
+            return;
         }
 
         sessionStorage.setItem('inviteeName', dn);
@@ -245,11 +277,18 @@ export default function CheckinPage() {
         <MotionConfig reducedMotion="user" suppressHydrationWarning>
             <div className="min-h-screen bg-[#f8f6f2] text-[#3d2e1e] flex flex-col items-center font-[Montserrat]">
                 <motion.header {...fade} className="mt-16 sm:mt-20 mb-10 sm:mb-12 space-y-2">
-                    <h1 className="text-5xl sm:text-6xl flex flex-col md:flex-row font-crimson tracking-wide p-3 leading-none text-transparent bg-clip-text text-gradient-gold">
+                    {/* <h1 className="text-5xl sm:text-6xl flex flex-col md:flex-row font-crimson tracking-wide p-3 leading-none text-transparent bg-clip-text text-gradient-gold">
                         <p className="mr-2">Nimako</p>
                         <p className="text-center font-parisienne">&</p>
                         <p className="ml-2 text-right">Bandau</p>
-                    </h1>
+                    </h1> */}
+                    <div className="mb-5 inline-flex items-center gap-2 text-[clamp(1rem,4vw,2rem)] md:text-[clamp(1.5rem,3vw,3rem)] tracking-[0.18em] uppercase text-gradient-gold whitespace-nowrap">
+                        <span className="h-[1px] w-6 bg-amber-200/40" />
+                        Nana-Serwaa & Abdul Wahab
+                        <span className="h-[1px] w-6 bg-amber-200/40" />
+                    </div>
+
+
                     <p className="text-center text-sm sm:text-base italic tracking-wide text-[#6b5a43] font-[Crimson_Text]">
                         A celebration of love & togetherness
                     </p>
@@ -277,7 +316,8 @@ export default function CheckinPage() {
                                     <button
                                         type="button"
                                         onClick={handleSearch}
-                                        className="px-5 py-2.5 rounded-xl bg-[#b29043] text-white font-medium hover:bg-[#a3823b] transition"
+                                        className="px-5 py-2.5 rounded-xl text-white font-medium hover:bg-[#a3823b] transition"
+                                        style={{ background: "linear-gradient(to right, #b29043, #f1c27d, #b29043)" }}
                                     >
                                         Search
                                     </button>
@@ -335,7 +375,7 @@ export default function CheckinPage() {
                                             Confirm attendance for {selected.partyLabel || safeName(selected)}
                                         </div>
                                         <p className="text-xs text-[#7e6c52] mt-1">
-                                            Tap Yes/No for each person. Saves automatically.
+                                            Tap Yes/No for each person. Saves automatically. Deadline: <span className='font-bold'>December 5th</span>
                                         </p>
                                     </div>
 
@@ -347,11 +387,6 @@ export default function CheckinPage() {
                                             >
                                                 <div>
                                                     <div className="font-medium">{safeName(m)}</div>
-                                                    {m.plusOne && (
-                                                        <div className="text-xs text-[#7e6c52]">
-                                                            +1 {m.plusOneName ? `(${m.plusOneName})` : ''}
-                                                        </div>
-                                                    )}
                                                 </div>
                                                 <div className="flex gap-3">
                                                     <CircleOption

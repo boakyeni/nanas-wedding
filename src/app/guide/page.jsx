@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 
 /** -------------------------------------------
  *  Helpers (icons + tiny utilities)
@@ -184,6 +183,14 @@ const quickNav = [
 /** sample hotels — replace with your real picks and links */
 const hotels = [
     {
+        name: "AirBnB",
+        area: "",
+        tags: ["Serviced-Apartments"],
+        image: "airbnb-logo.png",
+        links: [{ label: "Website", url: "https://www.airbnb.com/" }],
+        notes: "PLEASE NOTE: filter by GUEST FAVORITE when looking, always choose a host with many reviews, and confirm the address is actually where you booked after booking.",
+    },
+    {
         name: "Kempinski Hotel Gold Coast City",
         area: "Ridge, Accra",
         tags: ["Pool", "Spa", "5★"],
@@ -356,9 +363,9 @@ export default function WeddingGuidePage() {
                     <h1 className="text-lg font-semibold tracking-tight">
                         Wedding Guide: All You Need to Know
                     </h1>
-                    <Link href="/" className="text-[13px] underline">
+                    <a href="/" className="text-[13px] underline">
                         Back
-                    </Link>
+                    </a>
                 </div>
                 {/* Quick section nav (horizontal scroll on mobile) */}
                 <nav className="mt-2 flex gap-2 overflow-x-auto no-scrollbar">
@@ -500,8 +507,7 @@ export default function WeddingGuidePage() {
                                 content: (
                                     <div className="space-y-2">
                                         <p>
-                                            Bring an <strong>unlocked phone</strong>. At arrivals or
-                                            city kiosks, ask for a tourist bundle (data + minutes).
+                                            Bring a <strong>GSM unlocked phone</strong>. Visit MTN at Accra mall with your passport to purchase a sim card.
                                         </p>
                                         <ul className="list-disc pl-5 space-y-1">
                                             <li>
@@ -509,12 +515,15 @@ export default function WeddingGuidePage() {
                                                 a local contact.
                                             </li>
                                             <li>
-                                                If you have an ECOWAS/Ghana card, bring it — speeds up
+                                                If you have an ECOWAS/Ghana card or a friend with one, bring it/them — speeds up
                                                 registration.
                                             </li>
                                             <li>
                                                 Consider eSIM if your device supports it (check carrier
                                                 sites).
+                                            </li>
+                                            <li>
+                                                BLU phones are a great cheap option on amazon G35 starts at $60. Please ensure it is GSM unlocked.
                                             </li>
                                         </ul>
                                     </div>
@@ -527,7 +536,7 @@ export default function WeddingGuidePage() {
                                     <div className="space-y-2">
                                         <p>
                                             You can still register with your passport at most carrier
-                                            shops (MTN, Vodafone). Airport kiosks are the easiest.
+                                            shops (MTN, Vodafone).
                                         </p>
                                         <p className="text-[13px] text-neutral-600">
                                             Note: processes change — ask the clerk for the simplest
@@ -669,9 +678,12 @@ export default function WeddingGuidePage() {
                                 <ul className="mt-2 list-disc pl-5 text-[14px] space-y-1">
                                     <li>Small umbrella / light rain jacket</li>
                                     <li>Rehydration salts / basic meds</li>
-                                    <Link className="underline" href="https://www.amazon.com/Mophie-Powerstation-000mAh-Power-Bank/dp/B0DY2JYCG1/ref=sr_1_1_sspa?dib=eyJ2IjoiMSJ9.CxXsMIu2K6wBJAQJOBDXF7xNnyyYjg2ulTHppdgDDAxl8DZZvYgfqoQOpBUoZMi5EYfJyPqCPjRtAMWa21bU_sscFo4NL9OJGYcG65WM82K3wegbCNkDmj9D6wA9Xsgj8TRqoWK6CTmv4yp-4dE3mEMQWvTwTSFZ99JXxfB9uFgwcX4Jg4OZ5n_AGtf0SHvoYgmpj6k1VMMr2UlUfFplgkoOi4qkfqAn4cwUqTz2BWA.W_80ejWZhCiMN76_Jr1ODkq71wbN06pSSHkmLv4pYY0&dib_tag=se&hvadid=695135908028&hvdev=c&hvexpln=67&hvlocphy=1014389&hvnetw=g&hvocijid=7641990475612403820--&hvqmt=e&hvrand=7641990475612403820&hvtargid=kwd-588867239511&hydadcr=22197_13463224&keywords=mophie%2Bpower%2Bbank%2B20000mah&mcid=9f0e47e1586c308e814e8664887c477e&qid=1758154876&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1">
+                                    <a className="underline" href="https://www.amazon.com/Mophie-Powerstation-000mAh-Power-Bank/dp/B0DY2JYCG1/ref=sr_1_1_sspa?dib=eyJ2IjoiMSJ9.CxXsMIu2K6wBJAQJOBDXF7xNnyyYjg2ulTHppdgDDAxl8DZZvYgfqoQOpBUoZMi5EYfJyPqCPjRtAMWa21bU_sscFo4NL9OJGYcG65WM82K3wegbCNkDmj9D6wA9Xsgj8TRqoWK6CTmv4yp-4dE3mEMQWvTwTSFZ99JXxfB9uFgwcX4Jg4OZ5n_AGtf0SHvoYgmpj6k1VMMr2UlUfFplgkoOi4qkfqAn4cwUqTz2BWA.W_80ejWZhCiMN76_Jr1ODkq71wbN06pSSHkmLv4pYY0&dib_tag=se&hvadid=695135908028&hvdev=c&hvexpln=67&hvlocphy=1014389&hvnetw=g&hvocijid=7641990475612403820--&hvqmt=e&hvrand=7641990475612403820&hvtargid=kwd-588867239511&hydadcr=22197_13463224&keywords=mophie%2Bpower%2Bbank%2B20000mah&mcid=9f0e47e1586c308e814e8664887c477e&qid=1758154876&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1">
                                         <li>Power Bank</li>
-                                    </Link>
+                                    </a>
+                                    <a className="underline" href="https://www.amazon.com/Handheld-VersionTECH-Rechargeable-Household-Traveling/dp/B01HGI0S6O/ref=sr_1_1?crid=2H29DYG4KGW96&dib=eyJ2IjoiMSJ9.huYIuRuZzBKZ6T_SBCioaIMnL-YP1ZuhRYrsJwSlUdhi3Cueu_xSeAeUAuiHbrF_VA6R5x6Re38PHtoMx_AGVPPvHQxTJYLPaSao9MPubJcZj_hvzu1vZCRz8GnMyK0vjnztAY_u58fb3z3Ur-i3aLMcZeG-Sk-fMLWtIZjvuKsuyFt8PNmVhNgSCmq7v5ifNBJ9DY4JZHgFhKX_V1WLkOKhYn2e9l_I43IxB8me94-7WXqK9RTAQsumcC7qRBwUSa3uvx3DjLlV_EmyMbcajoDdvQU2txkZ_KLp5wv-VSw.XisFa6EzohmAx-T-SRhEj9Q4_w8d2U10JNaVaTpuXRY&dib_tag=se&keywords=version%2Btech&qid=1762137540&sprefix=version%2Btec%2Caps%2C188&sr=8-1&th=1">
+                                        <li>Portable Fan</li>
+                                    </a>
 
                                 </ul>
                             </div>
@@ -748,6 +760,44 @@ export default function WeddingGuidePage() {
                 <Section id="faq" title="FAQ">
                     <Accordion
                         items={[
+                            {
+                                id: "deadline",
+                                title: "What is the RSVP deadline?",
+                                content: (
+                                    <p>
+                                        Please RSVP or select attending status by December 5th, so we can have an accurate headcount.
+                                    </p>
+                                ),
+                            },
+                            {
+                                id: "rsvp",
+                                title: "What if I didn't RSVP in time?",
+                                content: (
+                                    <p>
+                                        If we do not receive your RSVP or attending status by December 5th, it will automativally be marked as a "No". 
+                                        We will miss celebrating with you but it is imperative we provide our vendors with a final guest count within the
+                                        time they have given us. Thank you for understanding.
+                                    </p>
+                                ),
+                            },
+                            {
+                                id: "parking",
+                                title: "Where should I park?",
+                                content: (
+                                    <p>
+                                        The venue has plenty of free parking.
+                                    </p>
+                                ),
+                            },
+                            {
+                                id: "outdoors",
+                                title: "Is the wedding indoors or outdoors?",
+                                content: (
+                                    <p>
+                                        Ceremony will be outdoors. The reception will be indoors.
+                                    </p>
+                                ),
+                            },
                             {
                                 id: "dress",
                                 title: "What should I wear?",

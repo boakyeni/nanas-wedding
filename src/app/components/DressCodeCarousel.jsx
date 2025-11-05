@@ -10,9 +10,9 @@ import "swiper/css/pagination";
 
 const FALLBACK_ITEMS = [
   { id: "w-trad-1", gender: "women", occasion: "traditional", title: "Kente Wrap", notes: "Statement jewelry; keep shoes neutral.", colors: ["Gold", "Emerald"], image: "/women_dress1.png" },
-  { id: "m-trad-1", gender: "men", occasion: "traditional", title: "Kaftan", notes: "Rich kente with simple leather slippers.", colors: ["Gold", "Black"], image: "/kaftan1.png" },
-  { id: "m-trad-3", gender: "men", occasion: "traditional", title: "Smock (Fugu)", notes: "Lightweight, pair with neutral trousers.", colors: ["Navy", "White"], image: "/men_dress_trad1.png" },
-  { id: "m-formal-1", gender: "men", occasion: "formal", title: "Tux / Black Tie", notes: "Classic black tux; bow tie preferred.", colors: ["Black", "White"], image: "/tux1.png" },
+  { id: "m-trad-1", gender: "men", occasion: "traditional", title: "Kaftan", notes: "Lightweight shirt and pants; can be long or shortsleeve", colors: ["Gold", "Black"], image: "/kaftan1.png" },
+  { id: "m-trad-3", gender: "men", occasion: "traditional", title: "Kente", notes: "Cultural cloth wrapped around", colors: ["Purple", "Gold"], image: "/men_dress_trad1.png" },
+  { id: "m-formal-1", gender: "men", occasion: "formal", title: "Tux / Black Tie", notes: "Classic black tux; bow tie preferred.", colors: ["Navy","Black"], image: "/tux1.png" },
   { id: "w-formal-1", gender: "women", occasion: "formal", title: "Evening Gown", notes: "Floor length; metallic accents welcome.", colors: ["Navy"], image: "/egown.png" },
     { id: "w-formal-3", gender: "women", occasion: "formal", title: "Party Dress", notes: "Floor length; metallic accents welcome.", colors: ["Gold"], image: "/salmonwomendress.png" },
     { id: "w-formal-4", gender: "women", occasion: "formal", title: "Mermaid", notes: "Off the shoulder mermaid", colors: ["Purple"], image: "/purplewomendress.png" },

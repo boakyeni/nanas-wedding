@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { ghanaActivities } from "@/app/data/ghanaActivities";
 
 // Basic currency formatting for GHS
@@ -35,7 +34,7 @@ export default function ActivityDetailPage({ params }) {
       <main className="mx-auto max-w-screen-sm p-6">
         <h1 className="text-2xl font-semibold">Not found</h1>
         <p className="mt-2 ">That activity doesn’t exist. Go back to the list.</p>
-        <Link href="/" className="mt-4 inline-block underline">Home</Link>
+        <a href="/#activities" className="mt-4 inline-block underline">Home</a>
       </main>
     );
   }
@@ -140,7 +139,7 @@ export default function ActivityDetailPage({ params }) {
 
       {/* Back */}
       <div className="mt-6">
-        <Link href="/#activities" className="underline">← Back to list</Link>
+        <a href="/#activities" className="underline">← Back to list</a>
       </div>
     </main>
   );

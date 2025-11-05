@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import ThankYou from './ThankYou';
 
 const RSVP = () => {
@@ -137,7 +136,7 @@ const RSVP = () => {
                                             style={formData.attending === 'yes' ? { background: goldGradient } : {}}
                                             onClick={() => handleAttendingClick('yes')}
                                         >
-                                            Yes, I'll be there
+                                            Yes, I&apos;ll be there
                                         </button>
                                         <button
                                             type="button"
@@ -145,7 +144,7 @@ const RSVP = () => {
                                             style={formData.attending === 'no' ? { background: purpleGradient } : {}}
                                             onClick={() => handleAttendingClick('no')}
                                         >
-                                            No, I'll celebrate in spirit
+                                            No, I&apos;ll celebrate in spirit
                                         </button>
                                     </div>
                                 </div>
@@ -247,7 +246,7 @@ const RSVP = () => {
                 </div>
 
                 <div className="mt-12 text-center text-gray-600">
-                    <p>If you have any questions, please contact us</p>
+                    <p>If you have any questions, please visit the <a href='/guide#faq' className='underline'>FAQs</a></p>
                     <p className="text-purple-700 font-medium"></p>
                 </div>
             </div>

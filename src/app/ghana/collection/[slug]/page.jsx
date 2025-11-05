@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from "react";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ghanaActivities } from "@/app/data/ghanaActivities";
 
@@ -97,9 +96,9 @@ export default function CollectionPage() {
             <main className="mx-auto max-w-screen-lg p-6">
                 <h1 className="text-2xl font-semibold">Not found</h1>
                 <p className="mt-2 text-neutral-600">That collection doesn’t exist.</p>
-                <Link href="/#activities" className="mt-4 inline-block underline">
+                <a href="/#activities" className="mt-4 inline-block underline">
                     ← Back to list
-                </Link>
+                </a>
             </main>
         );
     }
@@ -148,9 +147,9 @@ export default function CollectionPage() {
                         <p className="text-neutral-600 font-crimson">{collection.subtitle}</p>
                     )}
                 </div>
-                <Link href="/#activities" className="underline text-sm">
+                <a href="/#activities" className="underline text-sm">
                     ← Back to list
-                </Link>
+                </a>
             </div>
 
             {/* Controls */}
