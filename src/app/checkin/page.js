@@ -6,7 +6,7 @@ import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 
 const VENUE_NAME = "The Underbridge";
 const VENUE_ADDRESS = "2a Justice Azu Crabbe St, Accra, Ghana";
-const MAPS_URL = "https://maps.app.goo.gl/bPWBdS54viRJZrPg9";
+const MAPS_URL = "https://maps.app.goo.gl/gSc5c7cNAE7mjm3V8?g_st=ipc";
 const WEBSITE_URL = "https://nanaandwahabwedding.com/invitation";
 const GUIDE_URL = "https://nanaandwahabwedding.com/guide";
 const RSVP_LINK = "https://nanaandwahabwedding.com/checkin";
