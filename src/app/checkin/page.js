@@ -70,6 +70,7 @@ export default function CheckinPage() {
     const [saving, setSaving] = useState(false);
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [sending, setSending] = useState(false);
 
 
 
@@ -201,7 +202,8 @@ export default function CheckinPage() {
     }
 
     const continueToSite = useCallback(async () => {
-        if (!selected?.id) return;
+        if (sending || !selected?.id) return;
+        setSending(true);
         const dn = selected ? safeName(selected) : '';
         if (selectedNeedsContact) {
             const eOK = email && isEmail(email);
@@ -209,6 +211,7 @@ export default function CheckinPage() {
 
             if (!eOK && !pOK) {
                 alert('Please provide a valid email or phone.');
+                setSending(false);
                 return;
             }
         }
@@ -246,6 +249,7 @@ export default function CheckinPage() {
             // no local state sync needed since you're redirecting
         } catch (err) {
             alert('Failed to save your contact info. Please try again.');
+            setSending(false);
             return;
         }
 
@@ -253,7 +257,7 @@ export default function CheckinPage() {
         saveNameCookie(dn);
         sessionStorage.setItem('lastRoute', window.location.pathname);
         window.location.href = '/';
-    }, [selected, email, phone, selectedNeedsContact]);
+    }, [sending, selected, email, phone, selectedNeedsContact]);
 
     const skipCheckin = useCallback(() => {
         const dn = selected ? safeName(selected) : '';
@@ -465,7 +469,7 @@ export default function CheckinPage() {
                                         }}
                                         whileTap={{ scale: canContinue ? 0.985 : 1 }}
                                         onClick={continueToSite}
-                                        disabled={!canContinue}
+                                        disabled={!canContinue || sending}
                                         className={`px-6 py-3 rounded-xl text-white text-lg shadow-soft font-medium transition-all ${everyoneAnswered ? 'purple-royal-gradient' : 'bg-gray-400'
                                             } disabled:opacity-60`}
                                     >
