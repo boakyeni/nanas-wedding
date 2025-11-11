@@ -48,6 +48,7 @@ const fadeItem = {
 function safeTrim(s) {
     return (typeof s === 'string' ? s : '').trim();
 }
+
 function safeName(g) {
     const dn = safeTrim(g.displayName);
     if (dn) return dn;
@@ -72,7 +73,78 @@ export default function CheckinPage() {
     const [phone, setPhone] = useState('');
     const [sending, setSending] = useState(false);
 
+    const [editNameMode, setEditNameMode] = useState(false);
+    const [nameEditGuestId, setNameEditGuestId] = useState(null);
+    const [nameTitle, setNameTitle] = useState('');
+    const [nameFirst, setNameFirst] = useState('');
+    const [nameLast, setNameLast] = useState('');
+    const [savingName, setSavingName] = useState(false);
 
+
+    function beginEditGuestName(m) {
+        setNameEditGuestId(m.id);
+        setNameTitle(safeTrim(m.title || ''));
+        setNameFirst(safeTrim(m.firstName || ''));
+        setNameLast(safeTrim(m.lastName || ''));
+        setEditNameMode(true);
+    }
+    function cancelEditGuestName() {
+        setEditNameMode(false);
+        setNameEditGuestId(null);
+        setNameTitle('');
+        setNameFirst('');
+        setNameLast('');
+    }
+    function makeDisplayName({ title, firstName, lastName }) {
+  const t = safeTrim(title);
+  const f = safeTrim(firstName);
+  const l = safeTrim(lastName);
+  return [t, f, l].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+}
+    async function saveGuestNameNow() {
+        if (!nameEditGuestId) return;
+        setSavingName(true);
+        try {
+            const payload = {
+                title: safeTrim(nameTitle) || null,
+                firstName: safeTrim(nameFirst) || null,
+                lastName: safeTrim(nameLast) || null,
+            };
+
+            await jsonFetch(API.patchGuest(nameEditGuestId), {
+                method: 'PATCH',
+                body: JSON.stringify(payload),
+            });
+            const newDisplay = makeDisplayName({ title: payload.title, firstName: payload.firstName, lastName: payload.lastName });
+
+            // Optimistic local updates (partyMembers, guests, selected)
+            setPartyMembers(members =>
+                members.map(m =>
+                    m.id === nameEditGuestId
+                        ? { ...m, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay }
+                        : m
+                )
+            );
+            setGuests(list =>
+                list.map(g =>
+                    g.id === nameEditGuestId
+                        ? { ...g, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay }
+                        : g
+                )
+            );
+            setSelected(sel =>
+                sel && sel.id === nameEditGuestId
+                    ? { ...sel, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay }
+                    : sel
+            );
+
+            cancelEditGuestName();
+        } catch (e) {
+            alert('Could not save name. Please try again.');
+        } finally {
+            setSavingName(false);
+        }
+    }
 
     useEffect(() => {
         (async () => {
@@ -176,7 +248,7 @@ export default function CheckinPage() {
         return (
             upToDate.attending === true &&
             (!safeTrim(upToDate.email) ||
-            !safeTrim(upToDate.phone))
+                !safeTrim(upToDate.phone))
         );
     }, [selected, partyMembers]);
     const canContinue = everyoneAnswered && (!selectedNeedsContact || (isEmail(email) || isPhone(phone)));
@@ -239,7 +311,6 @@ export default function CheckinPage() {
         const pVal = phone?.trim();
         if (eVal && isEmail(eVal)) body.email = eVal;
         if (pVal && isPhone(pVal)) body.phone = pVal;
-
 
         try {
             await jsonFetch(API.sendConfirmations(selected.id), {
@@ -367,7 +438,10 @@ export default function CheckinPage() {
                         {selected && (
                             <motion.section key="party" {...fade} className="space-y-6">
                                 <button
-                                    onClick={() => setSelected(null)}
+                                    onClick={() => {
+                                        setSelected(null);
+                                        cancelEditGuestName(); // exit name-edit mode if active
+                                    }}
                                     className="text-sm underline text-[#6b5a43] hover:text-[#3d2e1e] transition-colors"
                                 >
                                     ← Change name
@@ -391,6 +465,13 @@ export default function CheckinPage() {
                                             >
                                                 <div>
                                                     <div className="font-medium">{safeName(m)}</div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => beginEditGuestName(m)}
+                                                        className="mt-1 text-xs text-[#6b5a43] hover:text-[#3d2e1e] max-sm:flex max-sm:flex-col"
+                                                    >
+                                                        <span className='font-bold'>Name misspelled?</span> <span className='underline'>Click here</span>
+                                                    </button>
                                                 </div>
                                                 <div className="flex gap-3">
                                                     <CircleOption
@@ -412,9 +493,86 @@ export default function CheckinPage() {
                                 </div>
 
                                 <motion.div {...fade} className="flex flex-col items-center gap-3 pt-2">
-                                    <AnimatePresence initial={false}>
-                                        {selectedNeedsContact && (
+                                    <AnimatePresence mode="wait">
+                                        {editNameMode ? (
+                                            // NAME FIX PANEL
                                             <motion.div
+                                                key="namefix"
+                                                {...fade}
+                                                exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
+                                                className="w-full rounded-2xl border border-[#e9e1cf] bg-white/80 shadow-soft p-4"
+                                            >
+                                                <div className="flex items-center justify-between">
+                                                    <div className="font-semibold text-[#3d2e1e]">Fix name</div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={cancelEditGuestName}
+                                                        className="text-xs underline text-[#6b5a43] hover:text-[#3d2e1e]"
+                                                    >
+                                                        {selectedNeedsContact ? 'Back to Contact Details' : 'Back'}
+                                                    </button>
+                                                </div>
+                                                <p className="text-xs text-[#7e6c52] mt-1">
+                                                    Update how this name should appear on the invitation.
+                                                </p>
+
+                                                <div className="mt-3 border border-[#eee6d6] rounded-xl p-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                                    <div className="flex flex-col">
+                                                        <label className="text-xs text-[#7e6c52] mb-1">Title (optional)</label>
+                                                        <input
+                                                            type="text"
+                                                            value={nameTitle}
+                                                            onChange={(e) => setNameTitle(e.target.value)}
+                                                            placeholder="Mr, Ms, Dr…"
+                                                            className="rounded-lg border px-3 py-2 bg-white/80 border-[#d7cbb0] focus:outline-none focus:ring-2 focus:ring-[rgba(178,144,67,0.35)] transition"
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <label className="text-xs text-[#7e6c52] mb-1">First name</label>
+                                                        <input
+                                                            type="text"
+                                                            value={nameFirst}
+                                                            onChange={(e) => setNameFirst(e.target.value)}
+                                                            placeholder="First name"
+                                                            className="rounded-lg border px-3 py-2 bg-white/80 border-[#d7cbb0] focus:outline-none focus:ring-2 focus:ring-[rgba(178,144,67,0.35)] transition"
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <label className="text-xs text-[#7e6c52] mb-1">Last name</label>
+                                                        <input
+                                                            type="text"
+                                                            value={nameLast}
+                                                            onChange={(e) => setNameLast(e.target.value)}
+                                                            placeholder="Last name"
+                                                            className="rounded-lg border px-3 py-2 bg-white/80 border-[#d7cbb0] focus:outline-none focus:ring-2 focus:ring-[rgba(178,144,67,0.35)] transition"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-3 flex gap-2 mx-auto justify-center">
+                                                    <button
+                                                        type="button"
+                                                        onClick={cancelEditGuestName}
+                                                        disabled={savingName}
+                                                        className="min-w-[110px] px-3 py-2 text-sm rounded-lg border border-[#d7cbb0] bg-white hover:bg-white/70 disabled:opacity-60 text-center"
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                    <motion.button
+                                                        type="button"
+                                                        onClick={saveGuestNameNow}
+                                                        disabled={savingName}
+                                                        whileHover={{ scale: savingName ? 1 : 1.03 }}
+                                                        whileTap={{ scale: savingName ? 1 : 0.98 }}
+                                                        className="min-w-[110px] px-3 py-2 text-sm rounded-lg text-white purple-royal-gradient disabled:opacity-60 shadow-soft text-center"
+                                                    >
+                                                        {savingName ? 'Saving…' : 'Save name'}
+                                                    </motion.button>
+                                                </div>
+                                            </motion.div>
+                                        ) : selectedNeedsContact ? (
+                                            <motion.div
+                                                key="contact"
                                                 {...fade}
                                                 exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
                                                 className="w-full rounded-2xl border border-[#e9e1cf] bg-white/80 shadow-soft p-4">
@@ -460,7 +618,7 @@ export default function CheckinPage() {
                                                     </div>
                                                 </div>
                                             </motion.div>
-                                        )}
+                                        ) : null}
                                     </AnimatePresence>
                                     <motion.button
                                         whileHover={{
