@@ -79,6 +79,7 @@ export default function CheckinPage() {
     const [nameFirst, setNameFirst] = useState('');
     const [nameLast, setNameLast] = useState('');
     const [savingName, setSavingName] = useState(false);
+    const [contactTouched, setContactTouched] = useState(false);
 
 
     function beginEditGuestName(m) {
@@ -121,20 +122,20 @@ export default function CheckinPage() {
             setPartyMembers(members =>
                 members.map(m =>
                     m.id === nameEditGuestId
-                        ? { ...m, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay }
+                        ? { ...m, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay, email: email, phone: phone }
                         : m
                 )
             );
             setGuests(list =>
                 list.map(g =>
                     g.id === nameEditGuestId
-                        ? { ...g, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay }
+                        ? { ...g, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay, email: email, phone: phone }
                         : g
                 )
             );
             setSelected(sel =>
                 sel && sel.id === nameEditGuestId
-                    ? { ...sel, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay }
+                    ? { ...sel, title: payload.title || '', firstName: payload.firstName || '', lastName: payload.lastName || '', displayName: newDisplay, email: email, phone: phone }
                     : sel
             );
 
@@ -245,12 +246,16 @@ export default function CheckinPage() {
         const upToDate = partyMembers.find(m => m.id === selected.id);
         if (!upToDate) return false;
 
+        if (contactTouched && !editNameMode) {
+            return true
+        }
+
         return (
             upToDate.attending === true &&
             (!safeTrim(upToDate.email) ||
-                !safeTrim(upToDate.phone))
+            !safeTrim(upToDate.phone))
         );
-    }, [selected, partyMembers]);
+    }, [selected, partyMembers, contactTouched, editNameMode]);
     const canContinue = everyoneAnswered && (!selectedNeedsContact || (isEmail(email) || isPhone(phone)));
 
 
@@ -578,7 +583,7 @@ export default function CheckinPage() {
                                                 className="w-full rounded-2xl border border-[#e9e1cf] bg-white/80 shadow-soft p-4">
                                                 <div className="font-semibold text-[#3d2e1e]">Add your contact details</div>
                                                 <p className="text-xs text-[#7e6c52] mt-1">
-                                                    Please provide <span className="font-semibold">email or WhatsApp phone #</span>.
+                                                    Please provide <span className="font-semibold">email or WhatsApp phone #</span>. Continue to website to save.
                                                 </p>
 
                                                 <div className="mt-3 border border-[#eee6d6] rounded-xl p-3">
@@ -590,7 +595,7 @@ export default function CheckinPage() {
                                                                 type="email"
                                                                 inputMode="email"
                                                                 value={email}
-                                                                onChange={(e) => setEmail(e.target.value)}
+                                                                onChange={(e) => { setEmail(e.target.value); setContactTouched(true); }}
                                                                 placeholder="name@example.com"
                                                                 className={`rounded-lg border px-3 py-2 bg-white/80 focus:outline-none focus:ring-2 transition ${email && !isEmail(email) ? 'border-red-300 ring-red-200' : 'border-[#d7cbb0] focus:ring-[rgba(178,144,67,0.35)]'
                                                                     }`}
@@ -606,7 +611,7 @@ export default function CheckinPage() {
                                                                 type="tel"
                                                                 inputMode="tel"
                                                                 value={phone}
-                                                                onChange={(e) => setPhone(e.target.value)}
+                                                                onChange={(e) => { setPhone(e.target.value); setContactTouched(true); }}
                                                                 placeholder="+1 (555) 123-4567"
                                                                 className={`rounded-lg border px-3 py-2 bg-white/80 focus:outline-none focus:ring-2 transition ${phone && !isPhone(phone) ? 'border-red-300 ring-red-200' : 'border-[#d7cbb0] focus:ring-[rgba(178,144,67,0.35)]'
                                                                     }`}
