@@ -159,7 +159,7 @@ const EnvelopeAnimation = () => {
                         zIndex: 10
                     }}
                 >
-                    Tap Here for Check In
+                    Tap Here to Continue
                 </div>
 
             )}

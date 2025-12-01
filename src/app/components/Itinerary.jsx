@@ -69,7 +69,7 @@ function TimelineRow({ ev, index, gold, reveal, delayMs }) {
     >
       {/* LEFT cell (visible only when isLeft) */}
       <div className={`${isLeft ? "" : "invisible"} pr-3 sm:pr-6 min-w-0`}>
-        <EventCard time={ev.time} name={ev.name} address={ev.address} note={ev.note} align="right" />
+        <EventCard time={ev?.time} name={ev.name} address={ev.address} note={ev.note} align="right" />
       </div>
 
       {/* CENTER dot (above the line) */}
@@ -81,7 +81,7 @@ function TimelineRow({ ev, index, gold, reveal, delayMs }) {
 
       {/* RIGHT cell (visible only when !isLeft) */}
       <div className={`${!isLeft ? "" : "invisible"} pl-3 sm:pl-6 min-w-0`}>
-        <EventCard time={ev.time} name={ev.name} address={ev.address} note={ev.note} align="left" />
+        <EventCard time={ev?.time} name={ev.name} address={ev.address} note={ev.note} align="left" />
       </div>
     </li>
   );
@@ -92,14 +92,16 @@ function EventCard({ time, name, address, note, align = "left" }) {
   return (
     <div className={`max-w-md ${alignClass} font-crimson tracking-widest text-lg`}>
       <div className="text-[0.75rem] sm:text-xs tracking-wider text-neutral-500">
-        {time.split(" ").length >= 3 ? (
+      {time ? (
+        time.split(" ").length >= 3 ? (
           <>
             <i>{time.split(" ")[0]}</i>{" "}
             {time.split(" ").slice(1).join(" ")}
           </>
         ) : (
           time
-        )}
+        )
+      ) : null}
       </div>
       <div className="mt-0.5 font-medium text-neutral-900 text-base sm:text-lg">{name}</div>
       <div className="text-neutral-600 text-sm sm:text-base break-words">{address}</div>

@@ -10,6 +10,7 @@ const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=The+UnderBridg
 const WEBSITE_URL = "https://nanaandwahabwedding.com/invitation";
 const GUIDE_URL = "https://nanaandwahabwedding.com/guide";
 const RSVP_LINK = "https://nanaandwahabwedding.com/checkin";
+const CHECKIN_ENABLED = false;
 
 const API = {
     getGuest: (id) => `/api/guests/${id}`,
@@ -220,6 +221,10 @@ export default function CheckinPage() {
     }, [selected, guests]);
 
     async function setAttendance(guestId, attending) {
+        if (!CHECKIN_ENABLED) {
+        // Do nothing when check-in is disabled
+        return;
+    }
         setSaving(true);
         try {
             setPartyMembers(members =>
@@ -455,10 +460,11 @@ export default function CheckinPage() {
                                 <div className="rounded-2xl border border-[#e9e1cf] bg-elegant-white shadow-soft overflow-hidden">
                                     <div className="p-4 border-b bg-white/60">
                                         <div className="font-semibold tracking-wide text-[#3d2e1e]">
-                                            Confirm attendance for {selected.partyLabel || safeName(selected)}
+                                            Attendance for {selected.partyLabel || safeName(selected)}
                                         </div>
                                         <p className="text-xs text-[#7e6c52] mt-1">
-                                            Tap Yes/No for each person. Saves automatically. Deadline: <span className='font-bold'>December 1st</span>
+                                            {/* Tap Yes/No for each person. Saves automatically. Deadline: <span className='font-bold'>December 1st</span> */}
+                                            The guestlist has been finalized. Thank you for your cooperation.
                                         </p>
                                     </div>
 
@@ -483,13 +489,13 @@ export default function CheckinPage() {
                                                         label="Yes"
                                                         selected={m.attending === true}
                                                         onClick={() => setAttendance(m.id, true)}
-                                                        disabled={saving}
+                                                        disabled={saving || !CHECKIN_ENABLED}
                                                     />
                                                     <CircleOption
                                                         label="No"
                                                         selected={m.attending === false}
                                                         onClick={() => setAttendance(m.id, false)}
-                                                        disabled={saving}
+                                                        disabled={saving || !CHECKIN_ENABLED}
                                                     />
                                                 </div>
                                             </li>

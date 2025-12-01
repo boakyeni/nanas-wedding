@@ -47,20 +47,21 @@ export default function Home({ searchParams }) {
   {
     date: "We Do",
     events: [
-      { time: "1:00 PM", name: "Ceremony", address: "The Underbridge"},
-      { time: "3:00 PM", name: "Cocktail Hour", address: "The Underbridge" },
+      { time: "1:00 PM", name: "Ceremony Seating", address: "The Underbridge"},
+      { time: "1:30 PM", name: "Ceremony Begins", address: "The Underbridge"},
+      { name: "Cocktail Hour", address: "The Underbridge" },
     ],
   },
   {
     date: "We Eat",
     events: [
-      { time: "5:00 PM", name: "Dinner & Toasts", address: "Diverse buffet & vegetarian options provided" },
-      { time: "till 10:00 PM", name: "DJ Dance Floor", address: "" },
+      { name: "Dinner & Toasts", address: "Diverse buffet & vegetarian options provided" },
+      { name: "DJ Dance Floor", address: "" },
     ],
   },
   {
     date: "We Party",
-    events: [{ time: "till 12 AM", name: "After Party", address: "" }],
+    events: [{ name: "After Party", address: "" }],
   },
 ];
 const pictures = [

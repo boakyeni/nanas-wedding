@@ -20,7 +20,7 @@ const FALLBACK_ITEMS = [
     { id: 15, name: "Chloe Hoses", side: "bride", image: "/chloe.jpeg" },
     { id: 7, name: "Andrew Zato", side: "groom", image: "/groom6.jpg" },
     { id: 16, name: "Naomi Smith-George", side: "bride", image: "/naomi.jpeg" },
-    { id: 8, name: "Surag", side: "groom", image: "/groom7.jpg", singleLine: true },
+    { id: 8, name: "Kofi Nkansah Dwemena", side: "groom", image: "/kofi.jpg" },
     { id: 17, name: "Janet Boachie", side: "bride", image: "/janet2.jpeg" },
     { id: 9, name: "Maxwell Takyi", side: "groom", image: "/groom8.jpg" },
     { id: 18, name: "Christa Boachie", side: "bride", image: "/christa.jpg" },
